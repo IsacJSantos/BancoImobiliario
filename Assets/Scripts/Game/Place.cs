@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class Place : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public float Cost{ get; private set; }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [SerializeField]
+    Transform _PieceFieldPos; // Position what pieces will move to
+    
+    //[SerializeField]
+    //Player _owner
+
+
+  
 }

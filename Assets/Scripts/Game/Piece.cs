@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class Piece : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public bool isFinish { get; private set; }
+    [SerializeField]
+    Board _board;
 
-    // Update is called once per frame
-    void Update()
+    int _movimentsAmount; // total of moviments
+    public void Move(int moviments)
     {
-        
+        _movimentsAmount = moviments;
+        StartCoroutine(MovimentRoutine());
+    }
+    IEnumerator MovimentRoutine() 
+    {
+        return null;
     }
 }

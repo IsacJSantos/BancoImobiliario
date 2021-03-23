@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class Dice : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public bool isFinish { get; private set; }
+    [SerializeField]
+    int _sides;
 
-    // Update is called once per frame
-    void Update()
+    public void RollDice() 
     {
-        
+    
     }
 }

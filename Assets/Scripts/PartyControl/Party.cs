@@ -4,15 +4,11 @@ using UnityEngine;
 
 public class Party : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    List<Player> _players = new List<Player>();
+    Turn _turn;
 
-    // Update is called once per frame
-    void Update()
+    void InitTurn() 
     {
-        
+    
     }
 }
