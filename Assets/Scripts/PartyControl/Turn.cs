@@ -7,5 +7,10 @@ public class Turn : MonoBehaviour
     public bool isFinish { get; private set; }
     [SerializeField]
     TurnActions _actions;
+    public Piece temp;
     
+    public void InitTurn() 
+    {
+        _actions.InitActions(temp);
+    }
 }

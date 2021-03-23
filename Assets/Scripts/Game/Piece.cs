@@ -9,20 +9,20 @@ public class Piece : MonoBehaviour
     [SerializeField]
     Board _board;
 
-    int _movimentsAmount; // Total of movements that Piece will do
+    int _movementsAmount; // Total of movements that Piece will do
 
-    public void MoveRequest(int moviments)
+    public void MoveRequest(int movements)
     {
         IsFinish = false;
-        _movimentsAmount = moviments;
+        _movementsAmount = movements;
         StartCoroutine(MovimentRoutine());
     }
 
     IEnumerator MovimentRoutine()
     {
-        while (_movimentsAmount > 0)
+        while (_movementsAmount > 0)
         {
-            _movimentsAmount--;
+            _movementsAmount--;
             Vector3 target = setTarget();
             while (Vector3.Distance(transform.position,target) > 0.01f)
             {

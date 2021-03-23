@@ -939,6 +939,17 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1452654076 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5994715520412846275, guid: 15ab4cb7d05f27b4199ef1e3039c466e, type: 3}
+  m_PrefabInstance: {fileID: 2832822354743234359}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d35778fb9ee8cf4889f2efe128c129e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1524195793
 GameObject:
   m_ObjectHideFlags: 0
@@ -1013,6 +1024,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6672381856907716250, guid: 2658f46b400c4b24bb29327442d01543, type: 3}
   m_PrefabInstance: {fileID: 6672381855012239456}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2088732567 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3229199832325564227, guid: 34098f01ad35cd946a859f16630fb23c, type: 3}
+  m_PrefabInstance: {fileID: 6038447194061124880}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf27e7b04a04e474c9b6f8c17d75cfe4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &775226462591440422
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1068,6 +1090,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ActionsController
       objectReference: {fileID: 0}
+    - target: {fileID: 775226462113165263, guid: 28e818529e1f6684eaa92d54205bd8b9, type: 3}
+      propertyPath: _dice
+      value: 
+      objectReference: {fileID: 1452654076}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28e818529e1f6684eaa92d54205bd8b9, type: 3}
 --- !u!1001 &1293267369142569296
@@ -1199,6 +1225,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3219852234700468936, guid: 19daee26d7254cd4284186bf0e00144b, type: 3}
+      propertyPath: temp
+      value: 
+      objectReference: {fileID: 2088732567}
     - target: {fileID: 3219852234700468936, guid: 19daee26d7254cd4284186bf0e00144b, type: 3}
       propertyPath: _actions
       value: 

@@ -1,12 +1,12 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class Dice : MonoBehaviour
-{  
+{
+    public event EventHandler IsFinish;
     public int SortValue { get; private set; }
-    public bool IsFinish { get; private set; }
     [SerializeField]
     int _sides;
     [SerializeField]
@@ -15,7 +15,6 @@ public class Dice : MonoBehaviour
   
     public void RollDice() 
     {
-        IsFinish = false;
         StartCoroutine(SortNumber());
     }
 
@@ -24,11 +23,11 @@ public class Dice : MonoBehaviour
         int sort = 1;
         for (int i = 0; i < 7; i++)
         {
-             sort = Random.Range(1, 7);
+             sort = UnityEngine.Random.Range(1, 7);
             _diceSortTxt.text = sort.ToString();
             yield return new WaitForSeconds(0.2f);
         }
         SortValue = sort;
-        IsFinish = true;
+        IsFinish?.Invoke(this, EventArgs.Empty);
     }
 }
