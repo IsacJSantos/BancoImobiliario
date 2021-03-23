@@ -6,7 +6,6 @@ public class Turn : MonoBehaviour
 {
     public bool isFinish { get; private set; }
     [SerializeField]
-    Dice _dice;
-
+    TurnActions _actions;
     
 }

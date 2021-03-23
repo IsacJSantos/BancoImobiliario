@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Party : MonoBehaviour
 {
-    List<Player> _players = new List<Player>();
+  
+    [SerializeField]
     Turn _turn;
-
+    List<Player> _players = new List<Player>();
     void InitTurn() 
     {
     
