@@ -12,12 +12,20 @@ public class Dice : MonoBehaviour
     [SerializeField]
     Text _diceSortTxt;
 
+    UIController _uIcontroller;
+    private void Start()
+    {
+        _uIcontroller = GameObject.FindGameObjectWithTag("UiController").GetComponent<UIController>();
+    }
     public void RollDice()
     {
-        StartCoroutine(SortNumber());
+        _uIcontroller.ShowDiceRoller(this);
     }
-
-    IEnumerator SortNumber()
+    public void Roll() 
+    {
+        StartCoroutine(SortNumberRoutine());
+    }
+    IEnumerator SortNumberRoutine()
     {
         int sort = 1;
         for (int i = 0; i < 7; i++)
@@ -28,5 +36,6 @@ public class Dice : MonoBehaviour
         }
         SortValue = sort;
         gameObject.SendMessage("DiceRollerFinish");
+        _uIcontroller.HideDiceRoller();
     }
 }

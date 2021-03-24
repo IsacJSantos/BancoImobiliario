@@ -582,6 +582,10 @@ PrefabInstance:
       propertyPath: Turn
       value: 
       objectReference: {fileID: 994968846}
+    - target: {fileID: 1492040843734585813, guid: 7a9ef9a5f43856a4ebb0c4748b36d31f, type: 3}
+      propertyPath: Points
+      value: 500
+      objectReference: {fileID: 0}
     - target: {fileID: 1492040843734585814, guid: 7a9ef9a5f43856a4ebb0c4748b36d31f, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -594,6 +598,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 4.15
       objectReference: {fileID: 0}
+    - target: {fileID: 1492040843951487559, guid: 7a9ef9a5f43856a4ebb0c4748b36d31f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 14694cf6fd9f8864abebdb900967f37a, type: 2}
     - target: {fileID: 1492040844507757971, guid: 7a9ef9a5f43856a4ebb0c4748b36d31f, type: 3}
       propertyPath: m_Name
       value: Player2
@@ -921,6 +929,10 @@ PrefabInstance:
       propertyPath: _diceSortTxt
       value: 
       objectReference: {fileID: 1157325080}
+    - target: {fileID: 1492040843734585813, guid: 7a9ef9a5f43856a4ebb0c4748b36d31f, type: 3}
+      propertyPath: Points
+      value: 500
+      objectReference: {fileID: 0}
     - target: {fileID: 1492040843734585814, guid: 7a9ef9a5f43856a4ebb0c4748b36d31f, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1104,6 +1116,10 @@ PrefabInstance:
       value: UiController
       objectReference: {fileID: 0}
     - target: {fileID: 3454761382437037483, guid: ec4c56b504af373418229845382ea318, type: 3}
+      propertyPath: _diceUI
+      value: 
+      objectReference: {fileID: 8799476768243301467}
+    - target: {fileID: 3454761382437037483, guid: ec4c56b504af373418229845382ea318, type: 3}
       propertyPath: _paymentUi
       value: 
       objectReference: {fileID: 1275616813}
@@ -1147,38 +1163,18 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 618455526}
-    - target: {fileID: 23866663, guid: 3629ec93432a60941bf76cc33576223d, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: PayButton
-      objectReference: {fileID: 0}
-    - target: {fileID: 23866663, guid: 3629ec93432a60941bf76cc33576223d, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UIController, Assembly-CSharp
-      objectReference: {fileID: 0}
     - target: {fileID: 353434230801003865, guid: 3629ec93432a60941bf76cc33576223d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 618455526}
-    - target: {fileID: 353434230801003865, guid: 3629ec93432a60941bf76cc33576223d, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: NoBuyButton
-      objectReference: {fileID: 0}
-    - target: {fileID: 353434230801003865, guid: 3629ec93432a60941bf76cc33576223d, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UIController, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 6914280091944145640, guid: 3629ec93432a60941bf76cc33576223d, type: 3}
+    - target: {fileID: 5843360592167809538, guid: 3629ec93432a60941bf76cc33576223d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 618455526}
     - target: {fileID: 6914280091944145640, guid: 3629ec93432a60941bf76cc33576223d, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: BuyButton
-      objectReference: {fileID: 0}
-    - target: {fileID: 6914280091944145640, guid: 3629ec93432a60941bf76cc33576223d, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UIController, Assembly-CSharp
-      objectReference: {fileID: 0}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 618455526}
     - target: {fileID: 8799476767496195552, guid: 3629ec93432a60941bf76cc33576223d, type: 3}
       propertyPath: m_Name
       value: Canvas
@@ -1269,3 +1265,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3629ec93432a60941bf76cc33576223d, type: 3}
+--- !u!1 &8799476768243301467 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5061036853479651252, guid: 3629ec93432a60941bf76cc33576223d, type: 3}
+  m_PrefabInstance: {fileID: 8799476768243301466}
+  m_PrefabAsset: {fileID: 0}

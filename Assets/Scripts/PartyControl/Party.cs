@@ -21,7 +21,6 @@ public class Party : MonoBehaviour
 
     void NextTurn()
     {
-        print("NextTurn");
         Player player = _players.ElementAt(index);
         index++;
         if (player)
@@ -29,6 +28,5 @@ public class Party : MonoBehaviour
 
         if (index > _players.Count - 1)
             index = 0;
-
     }
 }

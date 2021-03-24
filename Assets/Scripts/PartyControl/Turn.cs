@@ -1,5 +1,5 @@
 using UnityEngine;
-using System;
+using UnityEngine.UI;
 
 public class Turn : MonoBehaviour
 {
@@ -10,21 +10,24 @@ public class Turn : MonoBehaviour
 
     Dice _dice;
     Player _player;
+    UIController _uIController;
     private void Start()
     {
         _player = GetComponent<Player>();
         _dice = GetComponent<Dice>();
         PlaceChecker = GetComponent<PlaceChecker>();
-
-      /*  _dice.IsFinish += _dice_IsFinish;
-        _player.Piece.IsFinish += _piece_IsFinish;
-        _placeChecker.IsFinish += _placeChecker_IsFinish;*/
+        _uIController = GameObject.FindGameObjectWithTag("UiController").GetComponent<UIController>();
     }
 
     public void InitTurn() 
     {
         InitActions();
     }
+    public void InitActions()
+    {
+        _dice.RollDice();
+    }
+
     public void DiceRollerFinish()
     {
         MovePiece(_dice.SortValue);
@@ -36,34 +39,6 @@ public class Turn : MonoBehaviour
     public void CheckFinish()
     {
         _party.FinishTurn();
-    }
-
-    public void InitActions()
-    {
-        SortANumber();
-    }
-
-    // Events
-    /*private void _dice_IsFinish(object sender, System.EventArgs e)
-    {
-        MovePiece(_dice.SortValue);
-    }
-    private void _piece_IsFinish(object sender, System.EventArgs e)
-    {
-        print(_player.name + " is cheking place");
-        CheckPlaceInfos();
-    }
-    private void _placeChecker_IsFinish(object sender, System.EventArgs e)
-    {
-        print("_placeChecker_IsFinish");
-        
-    }
-    //--------
-    */
-
-    void SortANumber()
-    {
-        _dice.RollDice();
     }
 
     void MovePiece(int movements)

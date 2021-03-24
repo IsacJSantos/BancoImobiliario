@@ -4,17 +4,37 @@ using UnityEngine.UI;
 public class UIController : MonoBehaviour
 {
     [SerializeField]
-    GameObject _buyPlaceUi, _paymentUi;
+    GameObject _buyPlaceUi, _paymentUi, _diceUI;
     [SerializeField]
     Text _placePriceTxt, _paymentTxt;
 
     Player _player;
+    Dice _dice;
     private void Start()
     {
+        _diceUI.SetActive(true);
         _buyPlaceUi.SetActive(false);
-        _paymentUi.SetActive(false);
+        _paymentUi.SetActive(false);    
     }
-    public void ShowShopMenu(Player player,float price)
+
+    public void ShowDiceRoller(Dice dice) 
+    {
+        _dice = dice;
+        _diceUI.SetActive(true);
+    }
+    public void HideDiceRoller() 
+    {
+        _dice = null;
+        _diceUI.SetActive(false);
+    }
+
+    public void RollDiceButton()// Will be called from button UI
+    {
+        if (_dice)
+            _dice.Roll();
+    }
+
+    public void ShowShopMenu(Player player, float price)
     {
         _player = player;
         SetBuyPlaceUiText(price);
@@ -25,7 +45,7 @@ public class UIController : MonoBehaviour
         _buyPlaceUi.SetActive(false);
     }
 
-    public void ShowPaymentMenu(Player player,float price)
+    public void ShowPaymentMenu(Player player, float price)
     {
         _player = player;
         SetPaymentUiText(price);

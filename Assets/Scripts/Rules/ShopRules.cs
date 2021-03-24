@@ -18,13 +18,11 @@ public class ShopRules : MonoBehaviour
     {
         int price = (int)(_player.Piece.CurrentPlace.GetCost() / 2);
         _uIController.ShowPaymentMenu(_player,price);
-        print("Paymentmenu");
     }
     public void ShopMenu()
     {
         float price = _player.Piece.CurrentPlace.GetCost();
         _uIController.ShowShopMenu(_player,price);
-        print("ShopMenu");
     }
 
     public void FinishCheck() 
