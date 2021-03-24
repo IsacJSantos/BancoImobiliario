@@ -1,0 +1,69 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using System;
+
+public class Piece : MonoBehaviour
+{
+    public event EventHandler IsFinish;
+    public Place CurrentPlace { get; private set; }
+    
+    [SerializeField]
+    Board _board;
+
+    private int _currentPlaceIndex;
+    int _movementsAmount; // Total of movements that Piece will do
+
+    public void MoveRequest(int movements)
+    {
+       
+        _movementsAmount = movements;
+        StartCoroutine(MovimentRoutine());
+    }
+
+    IEnumerator MovimentRoutine()
+    {
+        while (_movementsAmount > 0)
+        {
+            _movementsAmount--;
+            Vector3 target = SetTarget();
+            while (Vector3.Distance(transform.position,target) > 0.01f)
+            {
+                Movement(target);
+                yield return null;
+            }
+
+            yield return new WaitForSeconds(0.3f);
+        }
+        IsFinish?.Invoke(this, EventArgs.Empty);
+    }
+
+    Vector3 SetTarget() 
+    {
+        Vector3 newPos;
+        if (_currentPlaceIndex >= _board.Places.Length - 1)// If this piece is on final place
+        {
+            _currentPlaceIndex = 0;
+            newPos = new Vector3(_board.Places[0]._PieceFieldPos.position.x
+                                        , transform.position.y
+                                        , _board.Places[0]._PieceFieldPos.position.z
+                                        );
+
+            CurrentPlace = _board.Places[0];
+            return newPos;
+        }
+
+        _currentPlaceIndex++;
+        newPos = new Vector3(_board.Places[_currentPlaceIndex]._PieceFieldPos.position.x
+                                        , transform.position.y
+                                        , _board.Places[_currentPlaceIndex]._PieceFieldPos.position.z
+                                        );
+
+        CurrentPlace = _board.Places[_currentPlaceIndex];
+        return newPos;
+    }
+    void Movement(Vector3 target)
+    {
+        transform.position = Vector3.MoveTowards(transform.position, target, 1.6f * Time.deltaTime);
+    }
+}
