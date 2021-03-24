@@ -4,46 +4,55 @@ using UnityEngine.UI;
 
 public class PlaceChecker : MonoBehaviour
 {
-    public event EventHandler IsFinish;
-    [SerializeField]
-    UIController uIController;
-
+ 
+    public ShopRules ShopRules { get; set; }
     Player _player;
 
-    public void CheckPlace(Player player)
+    private void Start()
     {
-        print(1);
-        _player = player;
-        StartCheck();
+        ShopRules = GetComponent<ShopRules>();
+        _player = GetComponent<Player>();
+
     }
 
-    public void BuyButton() // Will be call from button in UI
+    public void CheckPlace() // Will be called from TurnActions
     {
-        uIController.HideShopMenu();
-        IsFinish?.Invoke(this, EventArgs.Empty);
-    }
-    public void NoBuyButton() // Will be call from button in UI
-    {
-        uIController.HideShopMenu();
-        IsFinish?.Invoke(this, EventArgs.Empty);
+        CheckOwner();
     }
 
-    void StartCheck()
+    public void ShopFinish() 
     {
-
+        _player.Turn.CheckFinish();
+    }
+   
+    void CheckOwner() 
+    {
         if (HasOuwner())
         {
-            //
+            if (IsThisPlayerOwner())
+            {
+                print("Is this " + _player.name + " owner");
+                gameObject.SendMessage("CheckFinish");
+            }
+            else
+            {
+                print(_player.name + " is not owner");
+                ShopRules.PaymentMenu();
+            }
         }
-        else
+        else 
         {
-            uIController.ShowShopMenu();
+            ShopRules.ShopMenu();
         }
     }
 
+    bool IsThisPlayerOwner() 
+    {
+        return _player.Piece.CurrentPlace.Owner == _player;
+    }
     bool HasOuwner()
     {
-        return _player.Piece.CurrentPlace == null;
+        return _player.Piece.CurrentPlace.Owner != null;
     }
 
 

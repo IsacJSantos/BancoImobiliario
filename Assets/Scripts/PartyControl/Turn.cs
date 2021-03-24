@@ -3,24 +3,76 @@ using System;
 
 public class Turn : MonoBehaviour
 {
-    public event EventHandler IsFinish;
+    public PlaceChecker PlaceChecker { get; private set; }
 
     [SerializeField]
-    TurnActions _actions;
-    public Player temp;
+    Party _party;
 
+    Dice _dice;
+    Player _player;
     private void Start()
     {
-        _actions.IsFinish += _actions_IsFinish;
+        _player = GetComponent<Player>();
+        _dice = GetComponent<Dice>();
+        PlaceChecker = GetComponent<PlaceChecker>();
+
+      /*  _dice.IsFinish += _dice_IsFinish;
+        _player.Piece.IsFinish += _piece_IsFinish;
+        _placeChecker.IsFinish += _placeChecker_IsFinish;*/
     }
 
-    private void _actions_IsFinish(object sender, EventArgs e)
+    public void InitTurn() 
     {
-        IsFinish?.Invoke(this, EventArgs.Empty);
+        InitActions();
+    }
+    public void DiceRollerFinish()
+    {
+        MovePiece(_dice.SortValue);
+    }
+    public void MoveFinish()
+    {
+        CheckPlaceInfos();
+    }
+    public void CheckFinish()
+    {
+        _party.FinishTurn();
     }
 
-    public void InitTurn(/*Player player*/) 
+    public void InitActions()
     {
-        _actions.InitActions(temp);
+        SortANumber();
+    }
+
+    // Events
+    /*private void _dice_IsFinish(object sender, System.EventArgs e)
+    {
+        MovePiece(_dice.SortValue);
+    }
+    private void _piece_IsFinish(object sender, System.EventArgs e)
+    {
+        print(_player.name + " is cheking place");
+        CheckPlaceInfos();
+    }
+    private void _placeChecker_IsFinish(object sender, System.EventArgs e)
+    {
+        print("_placeChecker_IsFinish");
+        
+    }
+    //--------
+    */
+
+    void SortANumber()
+    {
+        _dice.RollDice();
+    }
+
+    void MovePiece(int movements)
+    {
+        _player.Piece.MoveRequest(movements);
+    }
+
+    void CheckPlaceInfos()
+    {
+        PlaceChecker.CheckPlace();
     }
 }

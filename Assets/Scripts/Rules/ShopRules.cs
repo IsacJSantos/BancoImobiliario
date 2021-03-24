@@ -1,67 +1,54 @@
 using UnityEngine;
+using System;
 using UnityEngine.UI;
 
-public class UIController : MonoBehaviour
+public class ShopRules : MonoBehaviour
 {
-    [SerializeField]
-    GameObject _buyPlaceUi, _paymentUi;
-    [SerializeField]
-    Text _placePriceTxt, _paymentTxt;
-
+    public event EventHandler IsFinish;
+   
+    UIController _uIController;
     Player _player;
+
     private void Start()
     {
-        _buyPlaceUi.SetActive(false);
-        _paymentUi.SetActive(false);
+        _player = GetComponent<Player>();
+        _uIController = GameObject.FindGameObjectWithTag("UiController").GetComponent<UIController>();
     }
-    public void ShowShopMenu(Player player,float price)
+    public void PaymentMenu()
     {
-        _player = player;
-        SetBuyPlaceUiText(price);
-        _buyPlaceUi.SetActive(true);
+        int price = (int)(_player.Piece.CurrentPlace.GetCost() / 2);
+        _uIController.ShowPaymentMenu(_player,price);
+        print("Paymentmenu");
     }
-    public void HideShopMenu()
+    public void ShopMenu()
     {
-        _buyPlaceUi.SetActive(false);
+        float price = _player.Piece.CurrentPlace.GetCost();
+        _uIController.ShowShopMenu(_player,price);
+        print("ShopMenu");
     }
 
-    public void ShowPaymentMenu(Player player,float price)
+    public void FinishCheck() 
     {
-        _player = player;
-        SetPaymentUiText(price);
-        _paymentUi.SetActive(true);
-    }
-    public void HidePaymentMenu()
-    {
-        _paymentUi.SetActive(false);
+        _player.Turn.PlaceChecker.ShopFinish();
     }
 
-    void SetBuyPlaceUiText(float price)
-    {
-        _placePriceTxt.text = "Place Price: " + price.ToString();
-    }
-    void SetPaymentUiText(float price)
-    {
-        _paymentTxt.text = "Debt: " + price.ToString();
-    }
-
-    public void BuyButton() // Will be called from button in UI
+   /* public void BuyButton() // Will be called from button in UI
     {
         BuyPlace();
-        HideShopMenu();
-        _player.Turn.PlaceChecker.ShopRules.FinishCheck();
+        _uIController.HideShopMenu();
+        IsFinish?.Invoke(this, EventArgs.Empty);
     }
     public void NoBuyButton() // Will be called from button in UI
     {
-        HideShopMenu();
-        _player.Turn.PlaceChecker.ShopRules.FinishCheck();
+        _uIController.HideShopMenu();
+        IsFinish?.Invoke(this, EventArgs.Empty);
     }
 
     public void PayButton() // Will be called from button in UI
     {
         PayDebt();
-        HidePaymentMenu();
-        _player.Turn.PlaceChecker.ShopRules.FinishCheck();
+        _uIController.HidePaymentMenu();
+        IsFinish?.Invoke(this, EventArgs.Empty);
     }
 
     void BuyPlace()
@@ -102,5 +89,5 @@ public class UIController : MonoBehaviour
         _player.Points -= place.GetCost();
         place.Owner = _player;
         _player.Properties.Add(place);
-    }
+    }*/
 }
