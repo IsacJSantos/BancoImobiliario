@@ -1,22 +1,28 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class TurnActions : MonoBehaviour
 {
-    public bool IsFinish { get; private set; }
+    public event EventHandler IsFinish;
     [SerializeField]
     Dice _dice;
 
-    Piece _piece;
+    Player _player;
+    PlaceChecker _placeChecker;
+
     private void Start()
     {
+        _placeChecker = GetComponent<PlaceChecker>();
+
         _dice.IsFinish += _dice_IsFinish;
+        _placeChecker.IsFinish += _placeChecker_IsFinish;
     }
 
-    public void InitActions(Piece piece)
+
+    public void InitActions(Player player)
     {
-        _piece = piece;
+        _player = player;
+        _player.Piece.IsFinish += _piece_IsFinish;
         SortANumber();
     }
 
@@ -25,18 +31,14 @@ public class TurnActions : MonoBehaviour
     {
         MovePiece(_dice.SortValue);
     }
-
-    void MoveCompleted()
+    private void _piece_IsFinish(object sender, System.EventArgs e)
     {
-        Debug.Log("terminou");
-        // CheckPosition();
+        CheckPlaceInfos();
     }
-
-    void CheckPosCompleted()
+    private void _placeChecker_IsFinish(object sender, System.EventArgs e)
     {
-        Debug.Log("terminou");
+        IsFinish?.Invoke(this, EventArgs.Empty);
     }
-
     //--------
 
     void SortANumber()
@@ -46,12 +48,12 @@ public class TurnActions : MonoBehaviour
 
     void MovePiece(int movements)
     {
-        _piece.MoveRequest(movements);
+        _player.Piece.MoveRequest(movements);
     }
 
-    void CheckPosition()
+    void CheckPlaceInfos()
     {
-
+        _placeChecker.CheckPlace(_player);
     }
 
 

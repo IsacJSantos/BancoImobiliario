@@ -12,7 +12,6 @@ public class Dice : MonoBehaviour
     [SerializeField]
     Text _diceSortTxt;
 
-  
     public void RollDice() 
     {
         StartCoroutine(SortNumber());

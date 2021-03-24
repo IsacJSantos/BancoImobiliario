@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class Place : MonoBehaviour
 {
-    public float Cost{ get; private set; }
-
-    [SerializeField]
     public Transform _PieceFieldPos { get; private set; } // Position what pieces will move to
 
-    [SerializeField]
-    Player _owner;
+    public Player Owner;
 
+    [SerializeField]
+    float _cost;
+
+    public float GetCost() 
+    {
+        return _cost;
+    }
     private void Start()
     {
         _PieceFieldPos = GetComponentInChildren<Transform>();

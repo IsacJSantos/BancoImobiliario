@@ -1,15 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Turn : MonoBehaviour
 {
-    public bool isFinish { get; private set; }
+    public event EventHandler IsFinish;
+
     [SerializeField]
     TurnActions _actions;
-    public Piece temp;
-    
-    public void InitTurn() 
+    public Player temp;
+
+    private void Start()
+    {
+        _actions.IsFinish += _actions_IsFinish;
+    }
+
+    private void _actions_IsFinish(object sender, EventArgs e)
+    {
+        IsFinish?.Invoke(this, EventArgs.Empty);
+    }
+
+    public void InitTurn(/*Player player*/) 
     {
         _actions.InitActions(temp);
     }
