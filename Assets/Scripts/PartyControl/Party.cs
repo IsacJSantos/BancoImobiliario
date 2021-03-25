@@ -1,23 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class Party : MonoBehaviour
 {
-  
+    public bool PartyFinish;
+    public List<Player> Players = new List<Player>();
     [SerializeField]
-    Turn _turn;
-    List<Player> _players = new List<Player>();
-
-    private void Update()
+    int index;
+   
+    public void StartParty() 
     {
-        if (Input.GetKeyDown(KeyCode.K))
+        NextTurn();
+    }
+    public void FinishTurn() 
+    {
+        if(Players.Count > 1) 
         {
-            InitTurn();
+            NextTurn();
+        }
+        else
+        {
+            PartyFinish = true;
         }
     }
-    void InitTurn() 
+
+    void NextTurn()
     {
-        _turn.InitTurn();
+        if (index > Players.Count - 1)
+            index = 0;
+
+        Player player = Players.ElementAt(index);
+        if (player)
+            player.Turn.InitTurn();
+
+        index++;
     }
 }

@@ -1,11 +1,9 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 public class Piece : MonoBehaviour
 {
-    public event EventHandler IsFinish;
+
     public Place CurrentPlace { get; private set; }
     
     [SerializeField]
@@ -13,12 +11,28 @@ public class Piece : MonoBehaviour
 
     private int _currentPlaceIndex;
     int _movementsAmount; // Total of movements that Piece will do
+    bool _isMoving;
+
+    private void Start()
+    {
+        _board = GameObject.FindGameObjectWithTag("Board").GetComponent<Board>();
+        if(_board)
+        CurrentPlace = _board.Places[0];
+        else 
+        {
+            Debug.Log("None board");
+        }
+    }
 
     public void MoveRequest(int movements)
     {
+        if (!_isMoving)
+        {
+            _isMoving = true;
+            _movementsAmount = movements;
+            StartCoroutine(MovimentRoutine());
+        }
        
-        _movementsAmount = movements;
-        StartCoroutine(MovimentRoutine());
     }
 
     IEnumerator MovimentRoutine()
@@ -33,9 +47,10 @@ public class Piece : MonoBehaviour
                 yield return null;
             }
 
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(0.2f);
         }
-        IsFinish?.Invoke(this, EventArgs.Empty);
+        _isMoving = false;
+        GetComponentInParent<Turn>().MoveFinish();
     }
 
     Vector3 SetTarget() 
@@ -64,6 +79,6 @@ public class Piece : MonoBehaviour
     }
     void Movement(Vector3 target)
     {
-        transform.position = Vector3.MoveTowards(transform.position, target, 1.6f * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, target, 2.5f * Time.deltaTime);
     }
 }

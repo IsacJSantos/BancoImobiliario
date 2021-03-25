@@ -1,26 +1,54 @@
 using UnityEngine;
-using System;
+using UnityEngine.UI;
 
 public class Turn : MonoBehaviour
 {
-    public event EventHandler IsFinish;
+    public PlaceChecker PlaceChecker { get; private set; }
 
     [SerializeField]
-    TurnActions _actions;
-    public Player temp;
+    Party _party;
 
+    Dice _dice;
+    Player _player;
+    UIController _uIController;
     private void Start()
     {
-        _actions.IsFinish += _actions_IsFinish;
+        _party = GameObject.FindGameObjectWithTag("Party").GetComponent<Party>();
+        _player = GetComponent<Player>();
+        _dice = GetComponent<Dice>();
+        PlaceChecker = GetComponent<PlaceChecker>();
+        _uIController = GameObject.FindGameObjectWithTag("UiController").GetComponent<UIController>();
     }
 
-    private void _actions_IsFinish(object sender, EventArgs e)
+    public void InitTurn() 
     {
-        IsFinish?.Invoke(this, EventArgs.Empty);
+        InitActions();
+    }
+    public void InitActions()
+    {
+        _dice.RollDice();
     }
 
-    public void InitTurn(/*Player player*/) 
+    public void DiceRollerFinish()
     {
-        _actions.InitActions(temp);
+        MovePiece(_dice.SortValue);
+    }
+    public void MoveFinish()
+    {
+        CheckPlaceInfos();
+    }
+    public void CheckFinish()
+    {
+        _party.FinishTurn();
+    }
+
+    void MovePiece(int movements)
+    {
+        _player.Piece.MoveRequest(movements);
+    }
+
+    void CheckPlaceInfos()
+    {
+        PlaceChecker.CheckPlace();
     }
 }
