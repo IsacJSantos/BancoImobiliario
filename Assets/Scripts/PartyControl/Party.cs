@@ -5,28 +5,36 @@ using System.Linq;
 
 public class Party : MonoBehaviour
 {
-    [SerializeField]
-    List<Player> _players = new List<Player>();
+    public bool PartyFinish;
+    public List<Player> Players = new List<Player>();
     [SerializeField]
     int index;
-    private void Start()
+   
+    public void StartParty() 
     {
         NextTurn();
     }
-
     public void FinishTurn() 
     {
-        NextTurn();
+        if(Players.Count > 1) 
+        {
+            NextTurn();
+        }
+        else
+        {
+            PartyFinish = true;
+        }
     }
 
     void NextTurn()
     {
-        Player player = _players.ElementAt(index);
-        index++;
+        if (index > Players.Count - 1)
+            index = 0;
+
+        Player player = Players.ElementAt(index);
         if (player)
             player.Turn.InitTurn();
 
-        if (index > _players.Count - 1)
-            index = 0;
+        index++;
     }
 }

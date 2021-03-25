@@ -13,6 +13,7 @@ public class Turn : MonoBehaviour
     UIController _uIController;
     private void Start()
     {
+        _party = GameObject.FindGameObjectWithTag("Party").GetComponent<Party>();
         _player = GetComponent<Player>();
         _dice = GetComponent<Dice>();
         PlaceChecker = GetComponent<PlaceChecker>();

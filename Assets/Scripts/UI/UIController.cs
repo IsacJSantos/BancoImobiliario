@@ -4,28 +4,29 @@ using UnityEngine.UI;
 public class UIController : MonoBehaviour
 {
     [SerializeField]
-    GameObject _buyPlaceUi, _paymentUi, _diceUI;
+    GameObject _buyPlaceUi, _paymentUi, _diceUi;
     [SerializeField]
-    Text _placePriceTxt, _paymentTxt;
+    Text _placePriceTxt, _paymentTxt,_paymentPlayerTxt, _playerTurnTxt;
 
     Player _player;
     Dice _dice;
     private void Start()
     {
-        _diceUI.SetActive(true);
+        _diceUi.SetActive(false);
         _buyPlaceUi.SetActive(false);
-        _paymentUi.SetActive(false);    
+        _paymentUi.SetActive(false);
     }
 
     public void ShowDiceRoller(Dice dice) 
     {
         _dice = dice;
-        _diceUI.SetActive(true);
+        SetDiceUiPlayerTxt();
+        _diceUi.SetActive(true);
     }
     public void HideDiceRoller() 
     {
         _dice = null;
-        _diceUI.SetActive(false);
+        _diceUi.SetActive(false);
     }
 
     public void RollDiceButton()// Will be called from button UI
@@ -48,7 +49,8 @@ public class UIController : MonoBehaviour
     public void ShowPaymentMenu(Player player, float price)
     {
         _player = player;
-        SetPaymentUiText(price);
+        int ownerId = player.Piece.CurrentPlace.Owner.Id;
+        SetPaymentUiText(ownerId,price);
         _paymentUi.SetActive(true);
     }
     public void HidePaymentMenu()
@@ -60,16 +62,21 @@ public class UIController : MonoBehaviour
     {
         _placePriceTxt.text = "Place Price: " + price.ToString();
     }
-    void SetPaymentUiText(float price)
+    void SetPaymentUiText(int OwnerId,float price)
     {
         _paymentTxt.text = "Debt: " + price.ToString();
+        _paymentPlayerTxt.text = "Player " + OwnerId + " owns this place. You need to pay!";
+    }
+    void SetDiceUiPlayerTxt() 
+    {
+        string playerId = _dice.GetComponent<Player>().Id.ToString();
+        _playerTurnTxt.text = "Player " + playerId + " turn";
     }
 
     public void BuyButton() // Will be called from button in UI
     {
-        BuyPlace();
         HideShopMenu();
-        _player.Turn.PlaceChecker.ShopRules.FinishCheck();
+        _player.Turn.PlaceChecker.ShopRules.BuyPlace();
     }
     public void NoBuyButton() // Will be called from button in UI
     {
@@ -79,48 +86,8 @@ public class UIController : MonoBehaviour
 
     public void PayButton() // Will be called from button in UI
     {
-        PayDebt();
         HidePaymentMenu();
-        _player.Turn.PlaceChecker.ShopRules.FinishCheck();
+        _player.Turn.PlaceChecker.ShopRules.PayDebt();
     }
 
-    void BuyPlace()
-    {
-        if (CanBuy())
-            Buy();
-        else
-            Debug.Log("Player can not buy this place");
-
-    }
-    void PayDebt()
-    {
-        if (CanPayDebt())
-            Pay();
-        else
-            Debug.Log("Player must be removed");
-    }
-
-    bool CanPayDebt()
-    {
-        return (int)(_player.Piece.CurrentPlace.GetCost() / 2) <= _player.Points;
-    }
-    bool CanBuy()
-    {
-        return _player.Piece.CurrentPlace.GetCost() <= _player.Points;
-    }
-
-    void Pay()
-    {
-        Player placeOwner = _player.Piece.CurrentPlace.Owner;
-        int debt = (int)(_player.Piece.CurrentPlace.GetCost() / 2);
-        _player.Points -= debt;
-        placeOwner.Points += debt;
-    }
-    void Buy()
-    {
-        Place place = _player.Piece.CurrentPlace;
-        _player.Points -= place.GetCost();
-        place.Owner = _player;
-        _player.Properties.Add(place);
-    }
 }

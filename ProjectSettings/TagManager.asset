@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Dice
   - UiController
+  - Party
+  - Board
+  - DiceSortTxt
+  - MessageController
   layers:
   - Default
   - TransparentFX

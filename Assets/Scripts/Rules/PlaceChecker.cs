@@ -27,16 +27,21 @@ public class PlaceChecker : MonoBehaviour
    
     void CheckOwner() 
     {
+        if (!PlaceBuyable()) 
+        {
+            _player.Turn.CheckFinish();
+            return;
+        }
+           
+
         if (HasOuwner())
         {
             if (IsThisPlayerOwner())
             {
-                print("Is this " + _player.name + " owner");
                 gameObject.SendMessage("CheckFinish");
             }
             else
             {
-                print(_player.name + " is not owner");
                 ShopRules.PaymentMenu();
             }
         }
@@ -46,6 +51,10 @@ public class PlaceChecker : MonoBehaviour
         }
     }
 
+    bool PlaceBuyable() 
+    {
+        return _player.Piece.CurrentPlace.CanBePurchased;
+    }
     bool IsThisPlayerOwner() 
     {
         return _player.Piece.CurrentPlace.Owner == _player;

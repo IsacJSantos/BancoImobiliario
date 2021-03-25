@@ -1,11 +1,9 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 public class Piece : MonoBehaviour
 {
-    public event EventHandler IsFinish;
+
     public Place CurrentPlace { get; private set; }
     
     [SerializeField]
@@ -14,6 +12,17 @@ public class Piece : MonoBehaviour
     private int _currentPlaceIndex;
     int _movementsAmount; // Total of movements that Piece will do
     bool _isMoving;
+
+    private void Start()
+    {
+        _board = GameObject.FindGameObjectWithTag("Board").GetComponent<Board>();
+        if(_board)
+        CurrentPlace = _board.Places[0];
+        else 
+        {
+            Debug.Log("None board");
+        }
+    }
 
     public void MoveRequest(int movements)
     {
