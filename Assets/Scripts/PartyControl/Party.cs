@@ -7,16 +7,26 @@ public class Party : MonoBehaviour
 {
     public bool PartyFinish;
     public List<Player> Players = new List<Player>();
-    [SerializeField]
     int index;
-   
-    public void StartParty() 
+
+    private void Awake()
+    {
+        Events.OnFinishTurn += FinishTurn;
+    }
+
+    private void OnDestroy()
+    {
+        Events.OnFinishTurn -= FinishTurn;
+    }
+
+    public void StartParty()
     {
         NextTurn();
     }
-    public void FinishTurn() 
+
+    void FinishTurn()
     {
-        if(Players.Count > 1) 
+        if (Players.Count > 1)
         {
             NextTurn();
         }
@@ -32,8 +42,8 @@ public class Party : MonoBehaviour
             index = 0;
 
         Player player = Players.ElementAt(index);
-        if (player)
-            player.Turn.InitTurn();
+        if (player != null)
+            Events.OnInitTurn?.Invoke(player);
 
         index++;
     }

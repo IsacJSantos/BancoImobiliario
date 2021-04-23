@@ -4,51 +4,63 @@ using UnityEngine.UI;
 public class Turn : MonoBehaviour
 {
     public PlaceChecker PlaceChecker { get; private set; }
+  
+    [SerializeField] Dice _dice;
 
-    [SerializeField]
-    Party _party;
-
-    Dice _dice;
     Player _player;
     UIController _uIController;
+
+    private void Awake()
+    {
+        Events.OnDiceFinish += DiceRollerFinish;
+        Events.OnInitTurn += InitTurn;
+        Events.OnPlayerFinishMove += MoveFinish;
+        Events.OnCheckPlaceFinish += CheckFinish;
+    }
     private void Start()
     {
-        _party = GameObject.FindGameObjectWithTag("Party").GetComponent<Party>();
-        _player = GetComponent<Player>();
-        _dice = GetComponent<Dice>();
         PlaceChecker = GetComponent<PlaceChecker>();
         _uIController = GameObject.FindGameObjectWithTag("UiController").GetComponent<UIController>();
     }
-
-    public void InitTurn() 
+    private void OnDestroy()
     {
+        Events.OnDiceFinish -= DiceRollerFinish;
+        Events.OnInitTurn -= InitTurn;
+        Events.OnPlayerFinishMove -= MoveFinish;
+        Events.OnCheckPlaceFinish -= CheckFinish;
+    }
+
+    void InitTurn(Player player)
+    {
+        _player = player;
         InitActions();
     }
     public void InitActions()
     {
-        _dice.RollDice();
+        Events.OnRollDice?.Invoke();
     }
 
-    public void DiceRollerFinish()
+    void DiceRollerFinish(int value)
     {
-        MovePiece(_dice.SortValue);
+        MovePiece(value);
     }
     public void MoveFinish()
     {
         CheckPlaceInfos();
     }
+
     public void CheckFinish()
     {
-        _party.FinishTurn();
+        Events.OnFinishTurn?.Invoke();
     }
 
     void MovePiece(int movements)
     {
-        _player.Piece.MoveRequest(movements);
+        Events.OnPlayerMove?.Invoke(_player.Id, movements);
     }
 
     void CheckPlaceInfos()
     {
-        PlaceChecker.CheckPlace();
+        Events.OnCheckPlace?.Invoke(_player);
     }
 }
