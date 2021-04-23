@@ -8,6 +8,10 @@ public class PlaceChecker : MonoBehaviour
     public ShopRules ShopRules { get; set; }
     Player _player;
 
+    private void Awake()
+    {
+        Events.OnCheckPlace += CheckPlace;
+    }
     private void Start()
     {
         ShopRules = GetComponent<ShopRules>();
@@ -15,21 +19,27 @@ public class PlaceChecker : MonoBehaviour
 
     }
 
-    public void CheckPlace() // Will be called from TurnActions
+    private void OnDestroy()
     {
+        Events.OnCheckPlace -= CheckPlace;
+    }
+
+    public void CheckPlace(Player p) // Will be called from TurnActions
+    {
+        _player = p;
         CheckOwner();
     }
 
     public void ShopFinish() 
     {
-        _player.Turn.CheckFinish();
+        Events.OnCheckPlaceFinish?.Invoke();
     }
    
     void CheckOwner() 
     {
         if (!PlaceBuyable()) 
         {
-            _player.Turn.CheckFinish();
+            Events.OnCheckPlaceFinish?.Invoke();
             return;
         }
            
@@ -38,7 +48,7 @@ public class PlaceChecker : MonoBehaviour
         {
             if (IsThisPlayerOwner())
             {
-                gameObject.SendMessage("CheckFinish");
+                Events.OnCheckPlaceFinish?.Invoke();
             }
             else
             {
