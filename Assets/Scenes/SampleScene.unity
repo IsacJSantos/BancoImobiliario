@@ -577,6 +577,10 @@ PrefabInstance:
       value: Party
       objectReference: {fileID: 0}
     - target: {fileID: 1293267368438763277, guid: 4a66a3429c57d024aaba8358c9195bcf, type: 3}
+      propertyPath: PartyFinish
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1293267368438763277, guid: 4a66a3429c57d024aaba8358c9195bcf, type: 3}
       propertyPath: Players.Array.size
       value: 0
       objectReference: {fileID: 0}
