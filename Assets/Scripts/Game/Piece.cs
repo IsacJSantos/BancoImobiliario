@@ -10,7 +10,6 @@ public class Piece : MonoBehaviour
     Board _board;
 
     private int _currentPlaceIndex;
-    int _movementsAmount; // Total of movements that Piece will do
     bool _isMoving;
 
     private void Start()
@@ -29,14 +28,14 @@ public class Piece : MonoBehaviour
         if (!_isMoving)
         {
             _isMoving = true;
-            _movementsAmount = movements;
-            StartCoroutine(MovimentRoutine());
+            StartCoroutine(MovimentRoutine(movements));
         }
 
     }
 
-    IEnumerator MovimentRoutine()
+    IEnumerator MovimentRoutine(int movements)
     {
+        int _movementsAmount = movements;
         while (_movementsAmount > 0)
         {
             _movementsAmount--;

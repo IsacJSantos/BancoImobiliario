@@ -4,9 +4,8 @@ using UnityEngine.UI;
 using System;
 
 public class Dice : MonoBehaviour
-{ 
-    [SerializeField]
-    int _sides;
+{
+    [SerializeField] int _sides;
 
     Text _diceSortTxt;
     UIController _uIcontroller;
@@ -26,7 +25,7 @@ public class Dice : MonoBehaviour
         Events.OnRollDice -= RollDice;
     }
 
-    public void RollDice()
+    void RollDice()
     {
         _uIcontroller.ShowDiceRoller(this);
     }

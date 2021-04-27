@@ -18,9 +18,16 @@ public class Events : MonoBehaviour
     public static PlayerEvent OnCheckPlace;
     public static SimpleEvent OnCheckPlaceFinish;
 
+
+    public static SimpleEvent OnShopFinish;
+    public static MenuShopTypePlayerEvent OnInitShopRules;
+    public static ShopTypePlayerEvent OnShop;
+
     public delegate void SimpleEvent();
     public delegate void IntEvent(int i);
     public delegate void IntIntEvent(int i1, int i2);
     public delegate void PlayerEvent(Player p);
+    public delegate void MenuShopTypePlayerEvent(MenuShopType mst, Player p);
+    public delegate void ShopTypePlayerEvent(ShopType st, Player p);
 
 }

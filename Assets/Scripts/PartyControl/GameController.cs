@@ -40,7 +40,7 @@ public class GameController : MonoBehaviour
     public void PlayButton() 
     {
         int playersAmount = int.Parse(_input.text);
-        if (playersAmount > 1)
+        if (playersAmount > 1 && playersAmount < 5)
         {
             _playerGenerator.Generate(playersAmount);
             _partyInitUi.SetActive(false);

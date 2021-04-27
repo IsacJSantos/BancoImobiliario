@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     public Piece Piece;
+    public string playerName;
     public int Id;
     public List<Place> Properties = new List<Place>();
 
