@@ -23,6 +23,9 @@ public class Events : MonoBehaviour
     public static MenuShopTypePlayerEvent OnInitShopRules;
     public static ShopTypePlayerEvent OnShop;
 
+    public static IntEvent OnGeneratePlayerPanel;
+
+
     public delegate void SimpleEvent();
     public delegate void IntEvent(int i);
     public delegate void IntIntEvent(int i1, int i2);

@@ -5,10 +5,8 @@ public class PlayerAmount : MonoBehaviour
 {
     [SerializeField] InputField inputField;
 
-    int amount;
-
     public void ButtonSelect()
-    {
-        //
+    {     
+        Events.OnGeneratePlayerPanel?.Invoke(int.Parse(inputField.text));
     }
 }
