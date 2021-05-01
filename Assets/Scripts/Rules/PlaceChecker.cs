@@ -5,64 +5,71 @@ using UnityEngine.UI;
 public class PlaceChecker : MonoBehaviour
 {
  
-    public ShopRules ShopRules { get; set; }
-    Player _player;
-
-    private void Start()
+    private void Awake()
     {
-        ShopRules = GetComponent<ShopRules>();
-        _player = GetComponent<Player>();
-
+        Events.OnShopFinish += ShopFinish;
+        Events.OnCheckPlace += CheckPlace;
     }
 
-    public void CheckPlace() // Will be called from TurnActions
+    private void OnDestroy()
     {
-        CheckOwner();
+        Events.OnShopFinish -= ShopFinish;
+        Events.OnCheckPlace -= CheckPlace;
+    }
+
+    public void CheckPlace(Player p) // Will be called from TurnActions
+    {
+        CheckOwner(p);
     }
 
     public void ShopFinish() 
     {
-        _player.Turn.CheckFinish();
+        Events.OnCheckPlaceFinish?.Invoke();
     }
    
-    void CheckOwner() 
+    void CheckOwner(Player player) 
     {
-        if (!PlaceBuyable()) 
+        if (!PlaceBuyable(player)) 
         {
-            _player.Turn.CheckFinish();
+            Events.OnCheckPlaceFinish?.Invoke();
             return;
         }
            
 
-        if (HasOuwner())
+        if (HasOuwner(player))
         {
-            if (IsThisPlayerOwner())
+            if (IsThisPlayerOwner(player))
             {
-                gameObject.SendMessage("CheckFinish");
+                Events.OnCheckPlaceFinish?.Invoke();
             }
             else
             {
-                ShopRules.PaymentMenu();
+                Events.OnInitShopRules?.Invoke(MenuShopType.Payment,player);
             }
         }
         else 
         {
-            ShopRules.ShopMenu();
+            Events.OnInitShopRules?.Invoke(MenuShopType.Shop, player);
         }
     }
 
-    bool PlaceBuyable() 
+    bool PlaceBuyable(Player player) 
     {
-        return _player.Piece.CurrentPlace.CanBePurchased;
+        return player.Piece.CurrentPlace.CanBePurchased;
     }
-    bool IsThisPlayerOwner() 
+    bool IsThisPlayerOwner(Player player) 
     {
-        return _player.Piece.CurrentPlace.Owner == _player;
+        return player.Piece.CurrentPlace.Owner == player;
     }
-    bool HasOuwner()
+    bool HasOuwner(Player player)
     {
-        return _player.Piece.CurrentPlace.Owner != null;
+        return player.Piece.CurrentPlace.Owner != null;
     }
 
 
+}
+public enum MenuShopType 
+{
+    Shop,
+    Payment
 }

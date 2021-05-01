@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    public Turn Turn;
     public Piece Piece;
+    public string playerName;
     public int Id;
     public List<Place> Properties = new List<Place>();
 
@@ -15,6 +15,15 @@ public class Player : MonoBehaviour
 
     PlayerScoreInfoController _playerScoreInfo;
 
+    private void Awake()
+    {
+        Events.OnPlayerMove += MoveRequest;       
+    }
+
+    private void OnDestroy()
+    {
+        Events.OnPlayerMove -= MoveRequest;
+    }
     public void SetPlayerScoreInfo(PlayerScoreInfoController playerScoreInfo) 
     {
         _playerScoreInfo = playerScoreInfo;
@@ -39,9 +48,11 @@ public class Player : MonoBehaviour
         _playerScoreInfo.SetPointsTxt(text);
     }
 
-    private void Start()
+    public void MoveRequest(int id,int movements) 
     {
-        Turn = GetComponent<Turn>();
-    }
+        if (id != this.Id)
+            return;
 
+        Piece.Move(movements);
+    }
 }

@@ -4,19 +4,28 @@ using UnityEngine.UI;
 using System;
 
 public class Dice : MonoBehaviour
-{ 
-    public int SortValue { get; private set; }
-    [SerializeField]
-    int _sides;
+{
+    [SerializeField] int _sides;
 
     Text _diceSortTxt;
     UIController _uIcontroller;
+
+    private void Awake()
+    {
+        Events.OnRollDice += RollDice;
+    }
     private void Start()
     {
         _uIcontroller = GameObject.FindGameObjectWithTag("UiController").GetComponent<UIController>();
         _diceSortTxt = GameObject.FindGameObjectWithTag("DiceSortTxt").GetComponent<Text>();
     }
-    public void RollDice()
+
+    private void OnDestroy()
+    {
+        Events.OnRollDice -= RollDice;
+    }
+
+    void RollDice()
     {
         _uIcontroller.ShowDiceRoller(this);
     }
@@ -34,7 +43,6 @@ public class Dice : MonoBehaviour
             _diceSortTxt.text = sort.ToString();
             yield return new WaitForSeconds(0.2f);
         }
-        SortValue = sort;
-        gameObject.SendMessage("DiceRollerFinish");
+        Events.OnDiceFinish?.Invoke(sort);
     }
 }

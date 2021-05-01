@@ -6,24 +6,34 @@ public class UIController : MonoBehaviour
     [SerializeField]
     GameObject _buyPlaceUi, _paymentUi, _diceUi;
     [SerializeField]
-    Text _placePriceTxt, _paymentTxt,_paymentPlayerTxt, _playerTurnTxt;
+    Text _placePriceTxt, _paymentTxt, _paymentPlayerTxt, _playerTurnTxt;
+    [SerializeField] Dice _dice;
 
     Player _player;
-    Dice _dice;
+   
+    private void Awake()
+    {
+
+    }
+
     private void Start()
     {
         _diceUi.SetActive(false);
         _buyPlaceUi.SetActive(false);
         _paymentUi.SetActive(false);
     }
+    private void OnDestroy()
+    {
 
-    public void ShowDiceRoller(Dice dice) 
+    }
+
+    public void ShowDiceRoller(Dice dice)
     {
         _dice = dice;
-        SetDiceUiPlayerTxt();
+        SetUiPlayerTurnTxt();
         _diceUi.SetActive(true);
     }
-    public void HideDiceRoller() 
+    public void HideDiceRoller()
     {
         _dice = null;
         _diceUi.SetActive(false);
@@ -50,7 +60,7 @@ public class UIController : MonoBehaviour
     {
         _player = player;
         int ownerId = player.Piece.CurrentPlace.Owner.Id;
-        SetPaymentUiText(ownerId,price);
+        SetPaymentUiText(ownerId, price);
         _paymentUi.SetActive(true);
     }
     public void HidePaymentMenu()
@@ -62,32 +72,40 @@ public class UIController : MonoBehaviour
     {
         _placePriceTxt.text = "Place Price: " + price.ToString();
     }
-    void SetPaymentUiText(int OwnerId,float price)
+    void SetPaymentUiText(int OwnerId, float price)
     {
         _paymentTxt.text = "Debt: " + price.ToString();
         _paymentPlayerTxt.text = "Player " + OwnerId + " owns this place. You need to pay!";
     }
-    void SetDiceUiPlayerTxt() 
+    void SetUiPlayerTurnTxt()
     {
-        string playerId = _dice.GetComponent<Player>().Id.ToString();
-        _playerTurnTxt.text = "Player " + playerId + " turn";
+        //string playerId = _dice.GetComponent<Player>().Id.ToString();
+       // _playerTurnTxt.text = "Player " + playerId + " turn";
     }
 
     public void BuyButton() // Will be called from button in UI
     {
         HideShopMenu();
-        _player.Turn.PlaceChecker.ShopRules.BuyPlace();
+        Events.OnShop?.Invoke(ShopType.Buy,_player);
     }
     public void NoBuyButton() // Will be called from button in UI
     {
         HideShopMenu();
-        _player.Turn.PlaceChecker.ShopRules.FinishCheck();
+        Events.OnShop?.Invoke(ShopType.NoBuy, _player);
     }
+
 
     public void PayButton() // Will be called from button in UI
     {
         HidePaymentMenu();
-        _player.Turn.PlaceChecker.ShopRules.PayDebt();
+        Events.OnShop?.Invoke(ShopType.Payment, _player);
     }
 
+
+}
+public enum ShopType
+{
+    Buy,
+    NoBuy,
+    Payment
 }

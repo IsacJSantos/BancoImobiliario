@@ -5,43 +5,42 @@ public class Piece : MonoBehaviour
 {
 
     public Place CurrentPlace { get; private set; }
-    
+
     [SerializeField]
     Board _board;
 
     private int _currentPlaceIndex;
-    int _movementsAmount; // Total of movements that Piece will do
     bool _isMoving;
 
     private void Start()
     {
         _board = GameObject.FindGameObjectWithTag("Board").GetComponent<Board>();
-        if(_board)
-        CurrentPlace = _board.Places[0];
-        else 
+        if (_board)
+            CurrentPlace = _board.Places[0];
+        else
         {
             Debug.Log("None board");
         }
     }
 
-    public void MoveRequest(int movements)
+    public void Move(int movements)
     {
         if (!_isMoving)
         {
             _isMoving = true;
-            _movementsAmount = movements;
-            StartCoroutine(MovimentRoutine());
+            StartCoroutine(MovimentRoutine(movements));
         }
-       
+
     }
 
-    IEnumerator MovimentRoutine()
+    IEnumerator MovimentRoutine(int movements)
     {
+        int _movementsAmount = movements;
         while (_movementsAmount > 0)
         {
             _movementsAmount--;
             Vector3 target = SetTarget();
-            while (Vector3.Distance(transform.position,target) > 0.01f)
+            while (Vector3.Distance(transform.position, target) > 0.01f)
             {
                 Movement(target);
                 yield return null;
@@ -50,10 +49,10 @@ public class Piece : MonoBehaviour
             yield return new WaitForSeconds(0.2f);
         }
         _isMoving = false;
-        GetComponentInParent<Turn>().MoveFinish();
+        Events.OnPlayerFinishMove?.Invoke();
     }
 
-    Vector3 SetTarget() 
+    Vector3 SetTarget()
     {
         Vector3 newPos;
         if (_currentPlaceIndex >= _board.Places.Length - 1)// If this piece is on final place

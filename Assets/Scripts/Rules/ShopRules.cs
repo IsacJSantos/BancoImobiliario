@@ -5,82 +5,127 @@ using UnityEngine.UI;
 public class ShopRules : MonoBehaviour
 {
     public event EventHandler IsFinish;
-   
+
     UIController _uIController;
-    Player _player;
     PlayerRemove _playerRemove;
     UiMessenger _uiMessanger;
+
+    private void Awake()
+    {
+        Events.OnShop += PlayerShopChoose;
+        Events.OnInitShopRules += ShowShopMenu;
+    }
     private void Start()
     {
-        _player = GetComponent<Player>();
         _uIController = GameObject.FindGameObjectWithTag("UiController").GetComponent<UIController>();
         _playerRemove = GameObject.FindGameObjectWithTag("Party").GetComponent<PlayerRemove>();
         _uiMessanger = GameObject.FindGameObjectWithTag("MessageController").GetComponent<UiMessenger>();
     }
-    public void PaymentMenu()
+    private void OnDestroy()
     {
-        int price = (int)(_player.Piece.CurrentPlace.GetCost() / 2);
-        _uIController.ShowPaymentMenu(_player,price);
-    }
-    public void ShopMenu()
-    {
-        float price = _player.Piece.CurrentPlace.GetCost();
-        _uIController.ShowShopMenu(_player,price);
+        Events.OnShop -= PlayerShopChoose;
+        Events.OnInitShopRules -= ShowShopMenu;
     }
 
-    public void FinishCheck() 
+    void ShowShopMenu(MenuShopType type, Player player)
     {
-        _player.Turn.PlaceChecker.ShopFinish();
+        switch (type)
+        {
+            case MenuShopType.Shop:
+                ShopMenu(player);
+                break;
+            case MenuShopType.Payment:
+                PaymentMenu(player);
+                break;
+            default:
+                Debug.LogError("Menu type not found");
+                break;
+        }
     }
 
-    public void BuyPlace()
+    void PlayerShopChoose(ShopType shopType, Player player) 
     {
-        if (CanBuy())
-            Buy();
+        switch (shopType)
+        {
+            case ShopType.Buy:
+                BuyPlace(player);
+                break;
+            case ShopType.NoBuy:
+                FinishCheck();
+                break;
+            case ShopType.Payment:
+                PayDebt(player);
+                break;
+            default:
+                break;
+        }
+    }
+
+
+    void PaymentMenu(Player player)
+    {
+        int price = (int)(player.Piece.CurrentPlace.GetCost() / 2);
+        _uIController.ShowPaymentMenu(player, price);
+    }
+    void ShopMenu(Player player)
+    {
+        float price = player.Piece.CurrentPlace.GetCost();
+        _uIController.ShowShopMenu(player, price);
+    }
+
+    public void FinishCheck()
+    {
+        Events.OnShopFinish?.Invoke();
+    }
+
+    public void BuyPlace(Player player)
+    {
+        if (CanBuy(player))
+            Buy(player);
         else
             _uiMessanger.SendTxtUiMessage("This player can't pay!");
 
         FinishCheck();
     }
-    public void PayDebt()
+    public void PayDebt(Player player)
     {
-        if (CanPayDebt())
-            Pay();
+        if (CanPayDebt(player))
+            Pay(player);
         else
-            RemovePlayer();
+            RemovePlayer(player);
 
         FinishCheck();
     }
 
-    void RemovePlayer() 
+    void RemovePlayer(Player player)
     {
-        if(_playerRemove)
-        _playerRemove.RemovePlayerFromParty(_player);
+        if (_playerRemove)
+            _playerRemove.RemovePlayerFromParty(player);
 
-        _uiMessanger.SendTxtUiMessage("Player " + _player.Id + " lose!");
+        _uiMessanger.SendTxtUiMessage("Player " + player.Id + " lose!");
         FinishCheck();
     }
-    bool CanPayDebt()
+    bool CanPayDebt(Player player)
     {
-        return (int)(_player.Piece.CurrentPlace.GetCost() / 2) <= _player.GetPoints();
+        return (int)(player.Piece.CurrentPlace.GetCost() / 2) <= player.GetPoints();
     }
-    bool CanBuy()
+    bool CanBuy(Player player)
     {
-        return _player.Piece.CurrentPlace.GetCost() <= _player.GetPoints();
+        return player.Piece.CurrentPlace.GetCost() <= player.GetPoints();
     }
 
-    void Pay()
+    void Pay(Player player)
     {
-        Player placeOwner = _player.Piece.CurrentPlace.Owner;
-        int debt = (int)(_player.Piece.CurrentPlace.GetCost() / 2);
-        _player.SetPoints(_player.GetPoints() - debt);
+        Player placeOwner = player.Piece.CurrentPlace.Owner;
+        int debt = (int)(player.Piece.CurrentPlace.GetCost() / 2);
+        player.SetPoints(player.GetPoints() - debt);
         placeOwner.SetPoints(placeOwner.GetPoints() + debt);
     }
-    void Buy()
+    void Buy(Player player)
     {
-        Place place = _player.Piece.CurrentPlace;
-        _player.SetPoints(_player.GetPoints() - place.GetCost());
-        place.Owner = _player;
-        _player.Properties.Add(place);
+        Place place = player.Piece.CurrentPlace;
+        player.SetPoints(player.GetPoints() - place.GetCost());
+        place.Owner = player;
+        player.Properties.Add(place);
     }
 }
