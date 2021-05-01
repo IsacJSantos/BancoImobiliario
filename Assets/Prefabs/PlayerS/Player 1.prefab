@@ -44,8 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3412b3abe7583a9459904fc2fec8a7d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Turn: {fileID: 0}
   Piece: {fileID: 7757583020492992384}
+  playerName: Hugo
   Id: 0
   Properties: []
   _points: 0
