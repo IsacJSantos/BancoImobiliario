@@ -14,14 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerData:
   - playerPrefab: {fileID: 1492040844507757971, guid: 7a9ef9a5f43856a4ebb0c4748b36d31f, type: 3}
-    skinIcon: {fileID: 21300000, guid: 167fa3a29a8e89140b14e8bb99295bf0, type: 3}
+    skinIcon: {fileID: 21300000, guid: 62d0fef00b2921f4a812da4758cb8c02, type: 3}
   - playerPrefab: {fileID: 1492040844507757971, guid: 0aab5e1ed913502489fddc39c45a43da, type: 3}
-    skinIcon: {fileID: 21300000, guid: 0ad8817b99ddb9949bdef517234f2d21, type: 3}
+    skinIcon: {fileID: 21300000, guid: e3cf71fd3b8b927428bd1a0b3b6b38a1, type: 3}
   - playerPrefab: {fileID: 1492040844507757971, guid: fb45a83c65b85e84b8d0556888a6b482, type: 3}
-    skinIcon: {fileID: 21300000, guid: ae7be82a0d97d84409c9a7c8b340476e, type: 3}
+    skinIcon: {fileID: 21300000, guid: b6e6aa2b8315dc946aff4821da4e395e, type: 3}
   - playerPrefab: {fileID: 1492040844507757971, guid: cd454db504750e54f98e2c746257ca49, type: 3}
-    skinIcon: {fileID: 21300000, guid: 74c3266210c09294f838afe83889d3e8, type: 3}
+    skinIcon: {fileID: 21300000, guid: 0b0ae896820182446b3df8df30c05e6e, type: 3}
   - playerPrefab: {fileID: 1492040844507757971, guid: 17c01e3133d4bb242be35084d56b83ee, type: 3}
-    skinIcon: {fileID: 21300000, guid: e16b7774589dfd74f96cfb176ee524e2, type: 3}
-  - playerPrefab: {fileID: 1492040844507757971, guid: 17c01e3133d4bb242be35084d56b83ee, type: 3}
-    skinIcon: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
+    skinIcon: {fileID: 21300000, guid: 3eab6d1668448174da3bd8bc224ac2f9, type: 3}

@@ -629,9 +629,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d12f20e7a9300c4b9a49a19b307c92f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atualSkinIndex: 0
   playerSkinPath: playerSkin
   selectedPlayreSkinImg: {fileID: 1146723029260310978}
-  atualSkinIndex: 0
 --- !u!1 &6499542186311118709
 GameObject:
   m_ObjectHideFlags: 0
@@ -1244,3 +1244,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2a529cd5b7bb63409cf91913cdec041, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerNameInput: {fileID: 8704661978468429197}
+  playerSelector: {fileID: 1276014734431438199}

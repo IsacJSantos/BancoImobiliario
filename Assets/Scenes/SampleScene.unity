@@ -150,6 +150,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7387806795984782891, guid: 3629ec93432a60941bf76cc33576223d, type: 3}
   m_PrefabInstance: {fileID: 8799476768243301466}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &581017467 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2901612280387251440, guid: effaa57602f87c947b3d156f8967266e, type: 3}
+  m_PrefabInstance: {fileID: 809567727825801280}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ffb66ea016846478bbca09e725d178, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &618455526 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3454761382437037483, guid: ec4c56b504af373418229845382ea318, type: 3}
@@ -647,6 +658,18 @@ PrefabInstance:
     - target: {fileID: 3120046919145379175, guid: 053ea9341c598f640a6fbe733ab51f5c, type: 3}
       propertyPath: m_Name
       value: PlayersConfigPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 3120046919145379175, guid: 053ea9341c598f640a6fbe733ab51f5c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6015614609673567224, guid: 053ea9341c598f640a6fbe733ab51f5c, type: 3}
+      propertyPath: board
+      value: 
+      objectReference: {fileID: 581017467}
+    - target: {fileID: 6015614609673567224, guid: 053ea9341c598f640a6fbe733ab51f5c, type: 3}
+      propertyPath: playerSkinPath
+      value: playerSkin
       objectReference: {fileID: 0}
     - target: {fileID: 8802858989917834630, guid: 053ea9341c598f640a6fbe733ab51f5c, type: 3}
       propertyPath: m_RootOrder
