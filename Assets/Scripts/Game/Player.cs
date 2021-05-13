@@ -53,6 +53,6 @@ public class Player : MonoBehaviour
         if (id != this.Id)
             return;
 
-        Piece.Move(movements);
+        Piece.Move(movements,id);
     }
 }

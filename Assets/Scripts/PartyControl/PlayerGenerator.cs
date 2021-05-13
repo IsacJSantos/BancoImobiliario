@@ -24,10 +24,10 @@ public class PlayerGenerator : MonoBehaviour
     }
     public void Generate(int amount)
     {
-        StartCoroutine(GeneratePlayersRoutine(amount));
+       // StartCoroutine(GeneratePlayersRoutine(amount));
     }
 
-    IEnumerator GeneratePlayersRoutine(int amount)
+   /* IEnumerator GeneratePlayersRoutine(int amount)
     {
         Vector3 pos = _board.Places[0]._PieceFieldPos.position;
         for (int i = 0; i < amount; i++)
@@ -42,7 +42,7 @@ public class PlayerGenerator : MonoBehaviour
         }
         _party.StartParty();
 
-    }
+    }*/
 
     GameObject SortAPlayerModel(Vector3 pos) 
     {

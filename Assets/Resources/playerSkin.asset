@@ -23,3 +23,5 @@ MonoBehaviour:
     skinIcon: {fileID: 21300000, guid: 0b0ae896820182446b3df8df30c05e6e, type: 3}
   - playerPrefab: {fileID: 1492040844507757971, guid: 17c01e3133d4bb242be35084d56b83ee, type: 3}
     skinIcon: {fileID: 21300000, guid: 3eab6d1668448174da3bd8bc224ac2f9, type: 3}
+  - playerPrefab: {fileID: 1492040844507757971, guid: e3ae6f0a00198cc49a39025d218705b3, type: 3}
+    skinIcon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}

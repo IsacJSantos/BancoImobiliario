@@ -33,13 +33,17 @@ public class PlayersConfigPanel : MonoBehaviour
 
     public void ButtonPlay() 
     {
+        int playerId = 0;
         foreach (var item in pPanelList)
         {
             Debug.LogWarning($"Player name is {item.Name}. Skin index is {item.Skin}");
-            Vector3 pos = board.Places[0]._PieceFieldPos.position;
+            Vector3 pos = board.Places[0].PiecePositions[playerId].position;
             Player player = Instantiate(Resources.Load<PLayerContainer>(playerSkinPath).playerData[item.Skin].playerPrefab, pos, Quaternion.identity).GetComponent<Player>();
             player.playerName = item.Name;
+            player.Id = playerId;
             Events.OnAddPlayerToList?.Invoke(player);
+
+            playerId++;
         }
     }
 }
