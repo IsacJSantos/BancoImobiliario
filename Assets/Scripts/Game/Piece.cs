@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
+[RequireComponent(typeof(Animator))]
 public class Piece : MonoBehaviour
 {
 
@@ -23,23 +24,23 @@ public class Piece : MonoBehaviour
         }
     }
 
-    public void Move(int movements)
+    public void Move(int movements,int id)
     {
         if (!_isMoving)
         {
             _isMoving = true;
-            StartCoroutine(MovimentRoutine(movements));
+            StartCoroutine(MovimentRoutine(movements,id));
         }
 
     }
 
-    IEnumerator MovimentRoutine(int movements)
+    IEnumerator MovimentRoutine(int movements,int id)
     {
         int _movementsAmount = movements;
         while (_movementsAmount > 0)
         {
             _movementsAmount--;
-            Vector3 target = SetTarget();
+            Vector3 target = SetTarget(id);
             while (Vector3.Distance(transform.position, target) > 0.01f)
             {
                 Movement(target);
@@ -52,15 +53,15 @@ public class Piece : MonoBehaviour
         Events.OnPlayerFinishMove?.Invoke();
     }
 
-    Vector3 SetTarget()
+    Vector3 SetTarget(int playerId)
     {
         Vector3 newPos;
         if (_currentPlaceIndex >= _board.Places.Length - 1)// If this piece is on final place
         {
             _currentPlaceIndex = 0;
-            newPos = new Vector3(_board.Places[0]._PieceFieldPos.position.x
+            newPos = new Vector3(_board.Places[0].PiecePositions[playerId].position.x
                                         , transform.position.y
-                                        , _board.Places[0]._PieceFieldPos.position.z
+                                        , _board.Places[0].PiecePositions[playerId].position.z
                                         );
 
             CurrentPlace = _board.Places[0];
@@ -68,9 +69,9 @@ public class Piece : MonoBehaviour
         }
 
         _currentPlaceIndex++;
-        newPos = new Vector3(_board.Places[_currentPlaceIndex]._PieceFieldPos.position.x
+        newPos = new Vector3(_board.Places[_currentPlaceIndex].PiecePositions[playerId].position.x
                                         , transform.position.y
-                                        , _board.Places[_currentPlaceIndex]._PieceFieldPos.position.z
+                                        , _board.Places[_currentPlaceIndex].PiecePositions[playerId].position.z
                                         );
 
         CurrentPlace = _board.Places[_currentPlaceIndex];

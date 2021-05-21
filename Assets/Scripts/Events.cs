@@ -6,6 +6,7 @@ using System;
 public class Events : MonoBehaviour
 {
     public static SimpleEvent OnFinishTurn;
+    public static PlayerEvent OnAddPlayerToList;
 
     public static IntEvent OnDiceFinish;
     public static SimpleEvent OnRollDice;
