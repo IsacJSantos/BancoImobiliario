@@ -15,13 +15,3 @@ MonoBehaviour:
   playerData:
   - playerPrefab: {fileID: 1492040844507757971, guid: 7a9ef9a5f43856a4ebb0c4748b36d31f, type: 3}
     skinIcon: {fileID: 21300000, guid: 62d0fef00b2921f4a812da4758cb8c02, type: 3}
-  - playerPrefab: {fileID: 1492040844507757971, guid: 0aab5e1ed913502489fddc39c45a43da, type: 3}
-    skinIcon: {fileID: 21300000, guid: e3cf71fd3b8b927428bd1a0b3b6b38a1, type: 3}
-  - playerPrefab: {fileID: 1492040844507757971, guid: fb45a83c65b85e84b8d0556888a6b482, type: 3}
-    skinIcon: {fileID: 21300000, guid: b6e6aa2b8315dc946aff4821da4e395e, type: 3}
-  - playerPrefab: {fileID: 1492040844507757971, guid: cd454db504750e54f98e2c746257ca49, type: 3}
-    skinIcon: {fileID: 21300000, guid: 0b0ae896820182446b3df8df30c05e6e, type: 3}
-  - playerPrefab: {fileID: 1492040844507757971, guid: 17c01e3133d4bb242be35084d56b83ee, type: 3}
-    skinIcon: {fileID: 21300000, guid: 3eab6d1668448174da3bd8bc224ac2f9, type: 3}
-  - playerPrefab: {fileID: 1492040844507757971, guid: e3ae6f0a00198cc49a39025d218705b3, type: 3}
-    skinIcon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
