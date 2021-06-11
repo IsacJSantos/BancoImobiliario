@@ -10,7 +10,7 @@ public class Piece : MonoBehaviour, IPiece
     [SerializeField] protected Board _board;
     [SerializeField] protected string idleAnimName;
     [SerializeField] protected string moveAnimName;
-   
+    [SerializeField] float moveSpeed;
     protected private int _currentPlaceIndex;
     protected bool _isMoving;
 
@@ -64,7 +64,7 @@ public class Piece : MonoBehaviour, IPiece
     protected virtual void Movement(Vector3 target)
     {
         Anim.Play(moveAnimName);
-        transform.position = Vector3.MoveTowards(transform.position, target, 2.5f * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, target, moveSpeed * Time.deltaTime);
     }
 
   
@@ -76,18 +76,25 @@ public class Piece : MonoBehaviour, IPiece
         {
             _movementsAmount--;
             Vector3 target = SetTarget(id);
+            SetRotation(target);
             while (Vector3.Distance(transform.position, target) > 0.01f)
             {
                 Movement(target);
                 yield return null;
             }
-
-            yield return new WaitForSeconds(0.2f);
+            Anim.Play(idleAnimName);
+            yield return new WaitForSeconds(0.3f);
         }
         _isMoving = false;
         Events.OnPlayerFinishMove?.Invoke();
     }
 
+    void SetRotation(Vector3 _target) 
+    {
+        Vector3 relativePos = _target - transform.position;
+        Quaternion rotation = Quaternion.LookRotation(relativePos,Vector3.up);
+        transform.rotation = rotation;
+    }
     Vector3 SetTarget(int playerId)
     {
         Vector3 newPos;

@@ -48,7 +48,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1288761325179668872}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -279,8 +279,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eee0e35c0667928448cb7b4ca52117cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pPanelList: []
+  board: {fileID: 0}
+  canvas: {fileID: 5648709990143179587}
   playerPanelPath: UI/PlayerPanel
+  playerSkinPath: 
   contentParent: {fileID: 3056421595949402329}
 --- !u!1 &5115472131526067368
 GameObject:

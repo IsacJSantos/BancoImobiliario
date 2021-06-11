@@ -17,3 +17,7 @@ MonoBehaviour:
     skinIcon: {fileID: 21300000, guid: 38f2d6304a1edcb4597aeb57a5bb69be, type: 3}
   - playerPrefab: {fileID: 3863415912666208268, guid: 34033d261765ac0448a20a1c21099fd4, type: 3}
     skinIcon: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  - playerPrefab: {fileID: 8431263598910048696, guid: bbc2a574a1993704ab352083cda84b41, type: 3}
+    skinIcon: {fileID: 21300000, guid: 8b7a80900fc793e43ae96856d381c14f, type: 3}
+  - playerPrefab: {fileID: 318512080561573562, guid: 4da2ede5b013df74caaa1852cc9393f1, type: 3}
+    skinIcon: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
