@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayersConfigPanel : MonoBehaviour
 { 
     [SerializeField] Board board;
+    [SerializeField] Canvas canvas;
     [SerializeField] string playerPanelPath;
     [SerializeField] string playerSkinPath;
     [SerializeField] Transform contentParent;
@@ -24,6 +25,7 @@ public class PlayersConfigPanel : MonoBehaviour
     public void GeneratePanel(int amount)
     {
         Debug.Log($"Generating {amount} players...");
+        canvas.enabled = true;
         for (int i = 0; i < amount; i++)
         {
             pPanelList.Add(Instantiate(Resources.Load<GameObject>(playerPanelPath), contentParent, false).GetComponent<PlayerPanel>());
@@ -34,7 +36,7 @@ public class PlayersConfigPanel : MonoBehaviour
     public void ButtonPlay() 
     {
         int playerId = 0;
-
+        canvas.enabled = false;
         foreach (var item in pPanelList)
         {
             Debug.LogWarning($"Player name is {item.Name}. Skin index is {item.Skin}");
@@ -46,5 +48,6 @@ public class PlayersConfigPanel : MonoBehaviour
 
             playerId++;
         }
+       
     }
 }

@@ -20,7 +20,13 @@ public class Party : MonoBehaviour
         Events.OnFinishTurn -= FinishTurn;
         Events.OnAddPlayerToList -= AddPlayerToList;
     }
-
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            StartParty();
+        }
+    }
     public void StartParty()
     {
         NextTurn();
@@ -29,16 +35,13 @@ public class Party : MonoBehaviour
     void FinishTurn()
     {
         if (Players.Count > 1)
-        {
             NextTurn();
-        }
         else
-        {
             PartyFinish = true;
-        }
+
     }
 
-    void AddPlayerToList(Player player) 
+    void AddPlayerToList(Player player)
     {
         Players.Add(player);
     }

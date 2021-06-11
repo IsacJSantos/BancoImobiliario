@@ -1338,10 +1338,10 @@ Animation:
   m_GameObject: {fileID: 8746848017576678857}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: d2e08446bf367a44ca129aee74435aa1, type: 2}
+  m_Animation: {fileID: 7400000, guid: 94145a642f4026d4daeea3dc7a310fc3, type: 2}
   m_Animations:
-  - {fileID: 7400000, guid: d2e08446bf367a44ca129aee74435aa1, type: 2}
   - {fileID: 7400000, guid: 48b74e7924153aa45a9c56329113ce65, type: 2}
+  - {fileID: 7400000, guid: 94145a642f4026d4daeea3dc7a310fc3, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
@@ -1359,8 +1359,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _board: {fileID: 0}
-  idleAnimName: 
+  idleAnimName: Idle_Priest
   moveAnimName: 
+  moveSpeed: 1
 --- !u!1 &8746850685238037879
 GameObject:
   m_ObjectHideFlags: 0

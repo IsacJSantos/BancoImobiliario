@@ -826,7 +826,7 @@ GameObject:
   - component: {fileID: 1178555194561863909}
   - component: {fileID: 9037572700744950557}
   m_Layer: 0
-  m_Name: PT_Medieval_Plague_Doctor_pose
+  m_Name: Piece
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -857,10 +857,10 @@ Animation:
   m_GameObject: {fileID: 4823321862802281514}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: d2e08446bf367a44ca129aee74435aa1, type: 2}
+  m_Animation: {fileID: 7400000, guid: 42fe3c392f55762409ffd1a283528762, type: 2}
   m_Animations:
   - {fileID: 7400000, guid: 48b74e7924153aa45a9c56329113ce65, type: 2}
-  - {fileID: 7400000, guid: d2e08446bf367a44ca129aee74435aa1, type: 2}
+  - {fileID: 7400000, guid: 42fe3c392f55762409ffd1a283528762, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
@@ -878,8 +878,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _board: {fileID: 0}
-  idleAnimName: 
+  idleAnimName: Idle_Doctor
   moveAnimName: 
+  moveSpeed: 1
 --- !u!1 &4823321862802281516
 GameObject:
   m_ObjectHideFlags: 0
