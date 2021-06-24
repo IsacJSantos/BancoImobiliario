@@ -4,14 +4,20 @@ public class PlayerPanel : MonoBehaviour
 {
     [SerializeField] TMPro.TMP_InputField playerNameInput;
     [SerializeField] PlayerSelector playerSelector;
-    public string Name { get 
+    public string Name
+    {
+        get
         {
             return playerNameInput.text;
-        } }
-    public int Skin { get 
+        }
+    }
+    public int Skin
+    {
+        get
         {
             return playerSelector.atualSkinIndex;
-        } }
+        }
+    }
 
-  
+
 }

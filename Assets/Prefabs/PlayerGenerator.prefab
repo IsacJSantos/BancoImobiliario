@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &9173789225008983673
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9173789225008983671}
+  - component: {fileID: 9173789225008983670}
+  m_Layer: 0
+  m_Name: PlayerGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9173789225008983671
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9173789225008983673}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1079.6547, y: 343.74445, z: 766.6008}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9173789225008983670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9173789225008983673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 233ac3320271a844e8397b9940445bca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerPrefabs:
+  - {fileID: 1492040844507757971, guid: 0aab5e1ed913502489fddc39c45a43da, type: 3}
+  - {fileID: 1492040844507757971, guid: fb45a83c65b85e84b8d0556888a6b482, type: 3}
+  - {fileID: 1492040844507757971, guid: cd454db504750e54f98e2c746257ca49, type: 3}
+  - {fileID: 1492040844507757971, guid: 17c01e3133d4bb242be35084d56b83ee, type: 3}
+  - {fileID: 1492040844507757971, guid: 7a9ef9a5f43856a4ebb0c4748b36d31f, type: 3}
+  _playerPrefab: {fileID: 1492040844507757971, guid: 7a9ef9a5f43856a4ebb0c4748b36d31f, type: 3}
+  _playerScoreInfoPrefab: {fileID: 8418022687461046781, guid: ba3721be2e42bc44eae399e3a08878ce, type: 3}
+  _parentPlayerScoreInfo: {fileID: 0}
+  _diceSortTxt: {fileID: 0}
+  _playersInitialPoins: 1500

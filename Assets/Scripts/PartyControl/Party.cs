@@ -12,13 +12,13 @@ public class Party : MonoBehaviour
     private void Awake()
     {
         Events.OnFinishTurn += FinishTurn;
-        Events.OnAddPlayerToList += AddPlayerToList;
+        //Events.OnAddPlayerToList += AddPlayerToList;
     }
 
     private void OnDestroy()
     {
         Events.OnFinishTurn -= FinishTurn;
-        Events.OnAddPlayerToList -= AddPlayerToList;
+       // Events.OnAddPlayerToList -= AddPlayerToList;
     }
     private void Update()
     {
