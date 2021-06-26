@@ -14,35 +14,34 @@ public class Party : MonoBehaviour
         Events.OnFinishTurn += FinishTurn;
         Events.OnAddPlayerToList += AddPlayerToList;
     }
+    private void Start()
+    {
+    }
 
     private void OnDestroy()
     {
         Events.OnFinishTurn -= FinishTurn;
         Events.OnAddPlayerToList -= AddPlayerToList;
     }
-
     public void StartParty()
     {
         NextTurn();
     }
 
+    void AddPlayerToList(Player _player) 
+    {
+        Players.Add(_player);
+    }
     void FinishTurn()
     {
         if (Players.Count > 1)
-        {
             NextTurn();
-        }
         else
-        {
             PartyFinish = true;
-        }
+
     }
 
-    void AddPlayerToList(Player player) 
-    {
-        Players.Add(player);
-    }
-
+  
     void NextTurn()
     {
         if (index > Players.Count - 1)

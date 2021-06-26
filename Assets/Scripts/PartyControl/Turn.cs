@@ -56,7 +56,7 @@ public class Turn : MonoBehaviour
 
     void MovePiece(int movements)
     {
-        Events.OnPlayerMove?.Invoke(_player.Id, movements);
+        Events.OnPlayerMove?.Invoke(_player.id, movements);
     }
 
     void CheckPlaceInfos()

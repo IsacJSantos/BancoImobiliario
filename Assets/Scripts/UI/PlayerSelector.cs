@@ -11,7 +11,7 @@ public class PlayerSelector : MonoBehaviour
 
     private void Start()
     {
-        selectedPlayreSkinImg.sprite = Resources.Load<PLayerContainer>(playerSkinPath).playerData[0].skinIcon;
+        selectedPlayreSkinImg.sprite = Resources.Load<SkinContainer>(playerSkinPath).playerData[0].skinIcon;
 
        /* foreach (var item in Resources.Load<PLayerContainer>(playerSkinPath).playerData)
         {
@@ -29,19 +29,19 @@ public class PlayerSelector : MonoBehaviour
 
         atualSkinIndex += index;
      
-        if (atualSkinIndex >= 0 && atualSkinIndex < Resources.Load<PLayerContainer>(playerSkinPath).playerData.Length) 
+        if (atualSkinIndex >= 0 && atualSkinIndex < Resources.Load<SkinContainer>(playerSkinPath).playerData.Length) 
         {
-            selectedPlayreSkinImg.sprite = Resources.Load<PLayerContainer>(playerSkinPath).playerData[atualSkinIndex].skinIcon;
+            selectedPlayreSkinImg.sprite = Resources.Load<SkinContainer>(playerSkinPath).playerData[atualSkinIndex].skinIcon;
         }
         else if (atualSkinIndex < 0)
         {
-            atualSkinIndex = Resources.Load<PLayerContainer>(playerSkinPath).playerData.Length - 1;
-            selectedPlayreSkinImg.sprite = Resources.Load<PLayerContainer>(playerSkinPath).playerData[atualSkinIndex].skinIcon;          
+            atualSkinIndex = Resources.Load<SkinContainer>(playerSkinPath).playerData.Length - 1;
+            selectedPlayreSkinImg.sprite = Resources.Load<SkinContainer>(playerSkinPath).playerData[atualSkinIndex].skinIcon;          
         }
         else
         {           
             atualSkinIndex = 0;
-            selectedPlayreSkinImg.sprite = Resources.Load<PLayerContainer>(playerSkinPath).playerData[0].skinIcon;
+            selectedPlayreSkinImg.sprite = Resources.Load<SkinContainer>(playerSkinPath).playerData[0].skinIcon;
         }
 
     }

@@ -3,24 +3,27 @@ using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
-    [SerializeField]
-    GameObject _buyPlaceUi, _paymentUi, _diceUi;
-    [SerializeField]
-    Text _placePriceTxt, _paymentTxt, _paymentPlayerTxt, _playerTurnTxt;
-    [SerializeField] Dice _dice;
-
-    Player _player;
+    static UIController _instance;
+    public static UIController Instance;
    
     private void Awake()
     {
+        if (_instance == null)
+        {
+            _instance = this;
+        }
+        else if (_instance != null && _instance != this)
+            Destroy(gameObject);
 
+        DontDestroyOnLoad(gameObject);
     }
 
     private void Start()
     {
-        _diceUi.SetActive(false);
+        /*_diceUi.SetActive(false);
         _buyPlaceUi.SetActive(false);
         _paymentUi.SetActive(false);
+        */
     }
     private void OnDestroy()
     {
@@ -29,53 +32,58 @@ public class UIController : MonoBehaviour
 
     public void ShowDiceRoller(Dice dice)
     {
-        _dice = dice;
+       /* _dice = dice;
         SetUiPlayerTurnTxt();
         _diceUi.SetActive(true);
+       */
     }
     public void HideDiceRoller()
     {
-        _dice = null;
+       /* _dice = null;
         _diceUi.SetActive(false);
+       */
     }
 
     public void RollDiceButton()// Will be called from button UI
     {
-        if (_dice)
+       /* if (_dice)
             _dice.Roll();
+       */
     }
 
     public void ShowShopMenu(Player player, float price)
     {
-        _player = player;
+       /* _player = player;
         SetBuyPlaceUiText(price);
         _buyPlaceUi.SetActive(true);
+       */
     }
     public void HideShopMenu()
     {
-        _buyPlaceUi.SetActive(false);
+      //  _buyPlaceUi.SetActive(false);
     }
 
     public void ShowPaymentMenu(Player player, float price)
     {
-        _player = player;
+       /* _player = player;
         int ownerId = player.Piece.CurrentPlace.Owner.Id;
         SetPaymentUiText(ownerId, price);
         _paymentUi.SetActive(true);
+       */
     }
     public void HidePaymentMenu()
     {
-        _paymentUi.SetActive(false);
+       // _paymentUi.SetActive(false);
     }
 
     void SetBuyPlaceUiText(float price)
     {
-        _placePriceTxt.text = "Place Price: " + price.ToString();
+        //_placePriceTxt.text = "Place Price: " + price.ToString();
     }
     void SetPaymentUiText(int OwnerId, float price)
     {
-        _paymentTxt.text = "Debt: " + price.ToString();
-        _paymentPlayerTxt.text = "Player " + OwnerId + " owns this place. You need to pay!";
+       /* _paymentTxt.text = "Debt: " + price.ToString();
+        _paymentPlayerTxt.text = "Player " + OwnerId + " owns this place. You need to pay!";*/
     }
     void SetUiPlayerTurnTxt()
     {
@@ -86,19 +94,19 @@ public class UIController : MonoBehaviour
     public void BuyButton() // Will be called from button in UI
     {
         HideShopMenu();
-        Events.OnShop?.Invoke(ShopType.Buy,_player);
+        //Events.OnShop?.Invoke(ShopType.Buy,_player);
     }
     public void NoBuyButton() // Will be called from button in UI
     {
         HideShopMenu();
-        Events.OnShop?.Invoke(ShopType.NoBuy, _player);
+       // Events.OnShop?.Invoke(ShopType.NoBuy, _player);
     }
 
 
     public void PayButton() // Will be called from button in UI
     {
         HidePaymentMenu();
-        Events.OnShop?.Invoke(ShopType.Payment, _player);
+      //  Events.OnShop?.Invoke(ShopType.Payment, _player);
     }
 
 
