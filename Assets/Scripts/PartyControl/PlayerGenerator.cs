@@ -1,63 +1,30 @@
-using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class PlayerGenerator : MonoBehaviour
 {
-    [SerializeField]
-    GameObject[] _playerPrefabs;
-    [SerializeField]
-    GameObject _playerPrefab, _playerScoreInfoPrefab;
-    [SerializeField]
-    GameObject _parentPlayerScoreInfo;
-    [SerializeField]
-    Text _diceSortTxt;
-    [SerializeField]
-    float _playersInitialPoins;
+    [SerializeField] Board board;
+    [SerializeField] string SkinContainerPath;
+    [SerializeField] string PlayerPath;
+    // Start is called before the first frame update
+    void Start()
+    {
+        board = GameObject.FindGameObjectWithTag("Board").GetComponent<Board>();
 
-    Party _party;
-    Board _board;
-    private void Start()
-    {
-        _party = GameObject.FindGameObjectWithTag("Party").GetComponent<Party>();
-        _board = GameObject.FindGameObjectWithTag("Board").GetComponent<Board>();
+        if (GameManager.Instance.PlayersData != null && GameManager.Instance.PlayersData.Count > 0)
+            Generator(GameManager.Instance.PlayersData);
     }
-    public void Generate(int amount)
+   
+    void Generator(List<PlayerData> _playersData)
     {
-       // StartCoroutine(GeneratePlayersRoutine(amount));
-    }
-
-   /* IEnumerator GeneratePlayersRoutine(int amount)
-    {
-        Vector3 pos = _board.Places[0]._PieceFieldPos.position;
-        for (int i = 0; i < amount; i++)
+        if (!board) return;
+        foreach (var item in _playersData)
         {
-            Player player = SortAPlayerModel(pos).GetComponent<Player>();
-            player.Id = i + 1; // Set player id
-            player.SetPlayerScoreInfo(GenerateScoreTextInfo(player.Id)); // Set a score info that will be show in ui
-            player.SetPoints(_playersInitialPoins); // Set player points
-
-            _party.Players.Add(player); // Put player in party players list
-            yield return null;
+            Vector3 _pos = board.Places[0].PiecePositions[item.id].position;
+            Piece _piece = Instantiate(Resources.Load<SkinContainer>(SkinContainerPath).playerData[item.skinId].playerPrefab,_pos,Quaternion.identity,transform).GetComponent<Piece>();
+            Player _player = Instantiate(Resources.Load<GameObject>(PlayerPath)).GetComponent<Player>();
+            _player.SetView(item,_piece);
+            Events.OnAddPlayerToList(_player);
         }
-        _party.StartParty();
-
-    }*/
-
-    GameObject SortAPlayerModel(Vector3 pos) 
-    {
-        int x = Random.Range(0, _playerPrefabs.Length);
-        GameObject randomPlayer = Instantiate(_playerPrefabs[x], pos, Quaternion.identity);
-        return randomPlayer;
-    }
-    PlayerScoreInfoController GenerateScoreTextInfo(int playerId) 
-    {
-       PlayerScoreInfoController playerScore = Instantiate(_playerScoreInfoPrefab,
-                                                            _parentPlayerScoreInfo.transform.position,
-                                                            Quaternion.identity).GetComponent<PlayerScoreInfoController>();
-
-        playerScore.transform.SetParent(_parentPlayerScoreInfo.transform);
-        playerScore.SetScoreInfo(playerId);
-        return playerScore;
     }
 }

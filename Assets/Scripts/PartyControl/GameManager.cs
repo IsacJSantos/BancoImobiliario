@@ -7,11 +7,12 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     static GameManager _instance;
-    public static GameManager Instance;
+    public static GameManager Instance => _instance;
 
     bool _isStopping;
 
-    public List<PlayerPanel> PlayerPanels = new List<PlayerPanel>();
+    public List<PlayerData> PlayersData = new List<PlayerData>();
+
     private void Awake()
     {
         if (_instance == null)
@@ -22,15 +23,20 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
 
         DontDestroyOnLoad(gameObject);
+        Events.OnSetPlayerDataList += SetPlayersData;
     }
     private void Start()
     {
         SceneManager.LoadScene(1);
     }
-    public void SetPlayers(List<PlayerPanel> _players) 
+    private void OnDestroy()
     {
-        PlayerPanels.Clear();
-        PlayerPanels = _players;
+        Events.OnSetPlayerDataList -= SetPlayersData;
+    }
+    public void SetPlayersData(List<PlayerData> _players) 
+    {
+        PlayersData.Clear();
+        PlayersData = _players;
         SceneManager.LoadScene(2);
     }
     public void GameOver(Player player) 

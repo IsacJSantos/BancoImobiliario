@@ -9,7 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 628190197255212590}
-  - component: {fileID: 7812223181445401588}
+  - component: {fileID: 2791066789663298495}
+  - component: {fileID: 5272220646144112895}
   m_Layer: 0
   m_Name: Piece0_Priest
   m_TagString: Untagged
@@ -32,7 +33,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7812223181445401588
+--- !u!111 &2791066789663298495
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1400963429720226685}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 94145a642f4026d4daeea3dc7a310fc3, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 48b74e7924153aa45a9c56329113ce65, type: 2}
+  - {fileID: 7400000, guid: 94145a642f4026d4daeea3dc7a310fc3, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
+--- !u!114 &5272220646144112895
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,14 +59,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1400963429720226685}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3412b3abe7583a9459904fc2fec8a7d8, type: 3}
+  m_Script: {fileID: 11500000, guid: c3261b3d6a9c9f34cb87249a133b82c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Piece: {fileID: 4295562143090617980}
-  playerName: 
-  Id: 0
-  Properties: []
-  _points: 0
+  _board: {fileID: 0}
+  idleAnimName: Idle_Priest
+  moveAnimName: 
+  moveSpeed: 1
 --- !u!1 &8746133604109262897
 GameObject:
   m_ObjectHideFlags: 0
@@ -1304,8 +1321,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8752669370316907175}
-  - component: {fileID: 3738189378532218269}
-  - component: {fileID: 4295562143090617980}
   m_Layer: 0
   m_Name: Piece
   m_TagString: Untagged
@@ -1329,39 +1344,6 @@ Transform:
   m_Father: {fileID: 628190197255212590}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!111 &3738189378532218269
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8746848017576678857}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 94145a642f4026d4daeea3dc7a310fc3, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: 48b74e7924153aa45a9c56329113ce65, type: 2}
-  - {fileID: 7400000, guid: 94145a642f4026d4daeea3dc7a310fc3, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
---- !u!114 &4295562143090617980
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8746848017576678857}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3261b3d6a9c9f34cb87249a133b82c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _board: {fileID: 0}
-  idleAnimName: Idle_Priest
-  moveAnimName: 
-  moveSpeed: 1
 --- !u!1 &8746850685238037879
 GameObject:
   m_ObjectHideFlags: 0

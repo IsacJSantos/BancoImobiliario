@@ -5,6 +5,9 @@ using System;
 
 public class Events : MonoBehaviour
 {
+    public static ListPlayerDataEvent OnSetPlayerDataList;
+
+
     public static SimpleEvent OnFinishTurn;
     public static PlayerEvent OnAddPlayerToList;
 
@@ -31,6 +34,7 @@ public class Events : MonoBehaviour
     public delegate void IntEvent(int i);
     public delegate void IntIntEvent(int i1, int i2);
     public delegate void PlayerEvent(Player p);
+    public delegate void ListPlayerDataEvent(List<PlayerData> players);
     public delegate void MenuShopTypePlayerEvent(MenuShopType mst, Player p);
     public delegate void ShopTypePlayerEvent(ShopType st, Player p);
 

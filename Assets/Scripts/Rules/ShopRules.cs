@@ -64,12 +64,12 @@ public class ShopRules : MonoBehaviour
 
     void PaymentMenu(Player player)
     {
-        int price = (int)(player.Piece.CurrentPlace.GetCost() / 2);
+        int price = (int)(player.piece.CurrentPlace.GetCost() / 2);
         _uIController.ShowPaymentMenu(player, price);
     }
     void ShopMenu(Player player)
     {
-        float price = player.Piece.CurrentPlace.GetCost();
+        float price = player.piece.CurrentPlace.GetCost();
         _uIController.ShowShopMenu(player, price);
     }
 
@@ -102,30 +102,30 @@ public class ShopRules : MonoBehaviour
         if (_playerRemove)
             _playerRemove.RemovePlayerFromParty(player);
 
-        _uiMessanger.SendTxtUiMessage("Player " + player.Id + " lose!");
+        _uiMessanger.SendTxtUiMessage("Player " + player.id + " lose!");
         FinishCheck();
     }
     bool CanPayDebt(Player player)
     {
-        return (int)(player.Piece.CurrentPlace.GetCost() / 2) <= player.GetPoints();
+        return (int)(player.piece.CurrentPlace.GetCost() / 2) <= player.GetPoints();
     }
     bool CanBuy(Player player)
     {
-        return player.Piece.CurrentPlace.GetCost() <= player.GetPoints();
+        return player.piece.CurrentPlace.GetCost() <= player.GetPoints();
     }
 
     void Pay(Player player)
     {
-        Player placeOwner = player.Piece.CurrentPlace.Owner;
-        int debt = (int)(player.Piece.CurrentPlace.GetCost() / 2);
+        Player placeOwner = player.piece.CurrentPlace.Owner;
+        int debt = (int)(player.piece.CurrentPlace.GetCost() / 2);
         player.SetPoints(player.GetPoints() - debt);
         placeOwner.SetPoints(placeOwner.GetPoints() + debt);
     }
     void Buy(Player player)
     {
-        Place place = player.Piece.CurrentPlace;
+        Place place = player.piece.CurrentPlace;
         player.SetPoints(player.GetPoints() - place.GetCost());
         place.Owner = player;
-        player.Properties.Add(place);
+        player.properties.Add(place);
     }
 }

@@ -12,26 +12,26 @@ public class Party : MonoBehaviour
     private void Awake()
     {
         Events.OnFinishTurn += FinishTurn;
-        //Events.OnAddPlayerToList += AddPlayerToList;
+        Events.OnAddPlayerToList += AddPlayerToList;
+    }
+    private void Start()
+    {
     }
 
     private void OnDestroy()
     {
         Events.OnFinishTurn -= FinishTurn;
-       // Events.OnAddPlayerToList -= AddPlayerToList;
-    }
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            StartParty();
-        }
+        Events.OnAddPlayerToList -= AddPlayerToList;
     }
     public void StartParty()
     {
         NextTurn();
     }
 
+    void AddPlayerToList(Player _player) 
+    {
+        Players.Add(_player);
+    }
     void FinishTurn()
     {
         if (Players.Count > 1)
@@ -41,11 +41,7 @@ public class Party : MonoBehaviour
 
     }
 
-    void AddPlayerToList(Player player)
-    {
-        Players.Add(player);
-    }
-
+  
     void NextTurn()
     {
         if (index > Players.Count - 1)

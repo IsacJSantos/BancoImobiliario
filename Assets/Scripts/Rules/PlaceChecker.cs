@@ -55,15 +55,15 @@ public class PlaceChecker : MonoBehaviour
 
     bool PlaceBuyable(Player player) 
     {
-        return player.Piece.CurrentPlace.CanBePurchased;
+        return player.piece.CurrentPlace.CanBePurchased;
     }
     bool IsThisPlayerOwner(Player player) 
     {
-        return player.Piece.CurrentPlace.Owner == player;
+        return player.piece.CurrentPlace.Owner == player;
     }
     bool HasOuwner(Player player)
     {
-        return player.Piece.CurrentPlace.Owner != null;
+        return player.piece.CurrentPlace.Owner != null;
     }
 
 

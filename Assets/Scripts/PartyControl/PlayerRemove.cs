@@ -19,12 +19,12 @@ public class PlayerRemove : MonoBehaviour
 
     IEnumerator RemovePropertiesRoutine(Player player) 
     {
-        foreach (var place in player.Properties)
+        foreach (var place in player.properties)
         {
             place.Owner = null;
             yield return null;
         }
         Destroy(player.GetPlayerScoreInfo().gameObject);
-        Destroy(player.gameObject);
+        //Destroy(player.gameObject);
     }
 }

@@ -5,10 +5,10 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    public Piece Piece;
+    public Piece piece;
     public string playerName;
-    public int Id;
-    public List<Place> Properties = new List<Place>();
+    public int id;
+    public List<Place> properties = new List<Place>();
 
     [SerializeField]
     float _points;
@@ -27,6 +27,13 @@ public class Player : MonoBehaviour
     public void SetPlayerScoreInfo(PlayerScoreInfoController playerScoreInfo) 
     {
         _playerScoreInfo = playerScoreInfo;
+    }
+    
+    public void SetView(PlayerData _playerData,Piece _piece) 
+    {
+        piece = _piece;
+        playerName = _playerData.playerName;
+        id = _playerData.id;
     }
 
     public PlayerScoreInfoController GetPlayerScoreInfo()
@@ -50,9 +57,9 @@ public class Player : MonoBehaviour
 
     public void MoveRequest(int id,int movements) 
     {
-        if (id != this.Id)
+        if (id != this.id)
             return;
 
-        Piece.Move(movements,id);
+        piece.Move(movements,id);
     }
 }
