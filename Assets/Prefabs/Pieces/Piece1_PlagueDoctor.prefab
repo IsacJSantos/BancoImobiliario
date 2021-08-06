@@ -9,8 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6392067335378231}
-  - component: {fileID: 5654943956772266701}
-  - component: {fileID: 3932257831591428616}
   m_Layer: 0
   m_Name: Piece1_PlagueDoctor
   m_TagString: Untagged
@@ -33,39 +31,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!111 &5654943956772266701
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3863415912666208268}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 42fe3c392f55762409ffd1a283528762, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: 48b74e7924153aa45a9c56329113ce65, type: 2}
-  - {fileID: 7400000, guid: 42fe3c392f55762409ffd1a283528762, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
---- !u!114 &3932257831591428616
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3863415912666208268}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf27e7b04a04e474c9b6f8c17d75cfe4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _board: {fileID: 0}
-  idleAnimName: Idle_Doctor
-  moveAnimName: 
-  moveSpeed: 1
 --- !u!1 &4823321862802281472
 GameObject:
   m_ObjectHideFlags: 0
@@ -840,6 +805,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4823321862802180106}
+  - component: {fileID: 1970035120165060568}
+  - component: {fileID: 8996405348412760548}
   m_Layer: 0
   m_Name: Piece
   m_TagString: Untagged
@@ -863,6 +830,39 @@ Transform:
   m_Father: {fileID: 6392067335378231}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!111 &1970035120165060568
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4823321862802281514}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 42fe3c392f55762409ffd1a283528762, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 48b74e7924153aa45a9c56329113ce65, type: 2}
+  - {fileID: 7400000, guid: 42fe3c392f55762409ffd1a283528762, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
+--- !u!114 &8996405348412760548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4823321862802281514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf27e7b04a04e474c9b6f8c17d75cfe4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _board: {fileID: 0}
+  idleAnimName: Idle_Doctor
+  moveAnimName: 
+  moveSpeed: 1
 --- !u!1 &4823321862802281516
 GameObject:
   m_ObjectHideFlags: 0
